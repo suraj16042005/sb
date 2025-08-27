@@ -6,8 +6,6 @@
     <title>StudyBuddy - Video Call</title>
     <link rel="stylesheet" href="jitsi.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="https://meet.jit.si/external_api.js"></script>
-
     <!-- Jitsi Meet External API script -->
     <script src="https://meet.jit.si/external_api.js"></script>
 </head>
@@ -32,6 +30,8 @@
             </div>
         </div>
     </div>
-    <script src="jitsi.js"></script>
+    <!-- Load jitsi.js as a module to ensure correct path resolution by Vite -->
+    <script type="module" src="./jitsi.js"></script>
 </body>
 </html>
+
