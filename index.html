@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyBuddy - Find Your Perfect Mentor</title>
+    <link rel="stylesheet" href="style.css">
+	  <link rel="stylesheet" href="pricing.css">
+	  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div id="notification-area" class="notification-area"></div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-book-open book-icon"></i>
+                <span class="logo-text">StudyBuddy</span>
+            </a>
+            <div class="nav-items">
+                <a href="index.html" class="nav-link"><b>Explore</b></a>
+                <a href="#" id="tutor-nav-link" class="nav-link"><b>Tutor</b></a>
+                <a href="pricing.html" class="nav-link"><b>Pricing</b></a>
+                <a href="about.html" class="nav-link"><b>About Us</b></a>
+            </div>
+            <div class="nav-right">
+                <div class="coins-display" id="coinsDisplay">
+                    <i class="fas fa-coins coin-icon"></i>
+                    <span class="coin-balance">0</span>
+                    <div class="coin-popover" id="coin-popover"></div>
+                </div>
+                <button class="join-btn" id="join-btn">Join StudyBuddy</button>
+                
+                <div class="user-dropdown-wrapper" id="user-dropdown-wrapper" style="display: none;">
+                    <button class="btn btn-secondary user-profile-btn" id="user-profile-btn">
+                        <img src="https://via.placeholder.com/32x32" alt="User Avatar" class="user-avatar-small" id="user-avatar-small">
+                        <span id="user-name-display">Hi! User</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="user-dropdown-menu" id="user-dropdown-menu">
+                        <a href="/my-sessions.html" class="dropdown-item" id="my-sessions-link"><i class="fas fa-calendar-alt"></i> My Sessions</a>
+                        <a href="/dashboard.html" class="dropdown-item" id="my-dashboard-link" style="display: none;"><i class="fas fa-tachometer-alt"></i> My Dashboard</a>
+                        <a href="/settings.html" class="dropdown-item" id="settings-link"><i class="fas fa-cog"></i> Settings</a>
+                        <hr>
+                        <button class="dropdown-item logout-btn" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                    </div>
+                </div>
+            </div>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay">
+        <div class="mobile-nav" id="mobileNav">
+            <div class="mobile-nav-header">
+                <a href="index.html" class="logo">StudyBuddy</a>
+                <button class="close-mobile-menu" id="closeMobileMenu">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="mobile-nav-actions">
+                <!-- User pill moved to top -->
+                <div class="user-dropdown-wrapper" id="mobile-user-dropdown-wrapper" style="display: none;">
+                    <button class="btn btn-secondary user-profile-btn" id="mobile-user-profile-btn">
+                        <img src="https://via.placeholder.com/32x32" alt="User Avatar" class="user-avatar-small" id="mobile-user-avatar-small">
+                        <span id="mobile-user-name-display">Hi! User</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="user-dropdown-menu" id="mobile-user-dropdown-menu">
+                        <a href="/my-sessions.html" class="dropdown-item" id="mobile-my-sessions-link"><i class="fas fa-calendar-alt"></i> My Sessions</a>
+                        <a href="/dashboard.html" class="dropdown-item" id="mobile-my-dashboard-link" style="display: none;"><i class="fas fa-tachometer-alt"></i> My Dashboard</a>
+                        <a href="/settings.html" class="dropdown-item" id="mobile-settings-link"><i class="fas fa-cog"></i> Settings</a>
+                        <hr>
+                        <button class="dropdown-item logout-btn" id="mobile-logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                    </div>
+                </div>
+                <div class="coins-display" id="mobileCoinsDisplay">
+                    <i class="fas fa-coins coin-icon"></i>
+                    <span class="coin-balance">0</span>
+                    <div class="coin-popover" id="mobile-coin-popover"></div>
+                </div>
+                <button class="btn btn-secondary" id="mobile-join-btn">Join StudyBuddy</button>
+            </div>
+            <nav class="mobile-nav-items">
+                <a href="index.html" class="mobile-nav-item">Explore</a>
+                <a href="#" id="mobile-tutor-nav-link" class="mobile-nav-item">Tutor</a>
+                <a href="pricing.html" class="mobile-nav-item">Pricing</a>
+                <a href="about.html" class="mobile-nav-item">About Us</a>
+            </nav>
+        </div>
+    </div>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Unlock Your Potential with Expert Mentors</h1>
+                <p>Find personalized 1-on-1 and group sessions in any subject.</p>
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Search for courses, mentors, or subjects...">
+                    <button class="btn btn-primary"><i class="fas fa-search"></i> Search</button>
+                    <div id="autocomplete-results" class="autocomplete-results"></div>
+                </div>
+                <!-- Temporary Jitsi Link for testing -->
+                <div style="margin-top: 30px;">
+                    <a href="jitsi.html" class="btn btn-secondary" style="padding: 12px 24px; font-size: 1.1em;">
+                        <i class="fas fa-video"></i> Join Test Video Call
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="course-listing">
+            <div class="container">
+                <div class="breadcrumb">
+                    <a href="index.html">Home</a> <i class="fas fa-chevron-right"></i> <span>Learn</span>
+                </div>
+								
+                <!-- Filter Toggle Button for Mobile -->
+                <button class="btn filter-toggle-btn" id="mobileFiltersToggle">
+                    <i class="fas fa-filter"></i> Show Filters
+                </button>
+
+                <div class="learn-content-wrapper"> <!-- NEW: This will be the flex container for sidebar and main content -->
+                    <aside class="filter-sidebar" id="filterSidebar">
+                        <div class="filter-header">
+                            <h3>Filters</h3>
+                            <button class="clear-filters-btn" id="clearFilters">Clear All</button>
+                        </div>
+                        <div class="filter-group">
+                            <div class="filter-group-header" data-category="price">
+                                <h4>Price Range</h4>
+                                <button class="expand-btn" data-category="price"><i class="fas fa-chevron-down"></i></button>
+                            </div>
+                            <div class="filter-group-content expanded" id="price-sub">
+                                <div class="price-inputs">
+                                    <input type="number" id="minPrice" value="50" min="0">
+                                    <span>-</span>
+                                    <input type="number" id="maxPrice" value="2000" max="5000">
+                                </div>
+                                <input type="range" id="priceSlider" min="50" max="2000" value="2000">
+                            </div>
+                        </div>
+
+                        <div class="filter-group">
+                            <div class="filter-group-header" data-category="language">
+                                <h4>Language</h4>
+                                <button class="expand-btn" data-category="language"><i class="fas fa-chevron-down"></i></button>
+                            </div>
+                            <div class="filter-group-content expanded language-filters" id="language-sub">
+                                <label><input type="checkbox" value="english"> <img src="https://flagcdn.com/w20/gb.png" alt="English Flag"> English</label>
+                                <label><input type="checkbox" value="hindi"> <img src="https://flagcdn.com/w20/in.png" alt="Hindi Flag"> Hindi</label>
+                                <label><input type="checkbox" value="marathi"> <img src="https://flagcdn.com/w20/in.png" alt="Marathi Flag"> Marathi</label>
+                                <label><input type="checkbox" value="tamil"> <img src="https://flagcdn.com/w20/in.png" alt="Tamil Flag"> Tamil</label>
+                                <label><input type="checkbox" value="telugu"> <img src="https://flagcdn.com/w20/in.png" alt="Telugu Flag"> Telugu</label>
+                                <label><input type="checkbox" value="bengali"> <img src="https://flagcdn.com/w20/in.png" alt="Bengali Flag"> Bengali</label>
+                                <label><input type="checkbox" value="gujarati"> <img src="https://flagcdn.com/w20/in.png" alt="Gujarati Flag"> Gujarati</label>
+                                <label><input type="checkbox" id="selectAllLanguages"> Select All</label>
+                            </div>
+                        </div>
+
+                        <div class="filter-group">
+                            <div class="filter-group-header" data-category="subject">
+                                <h4>Subject Categories</h4>
+                                <button class="expand-btn" data-category="subject"><i class="fas fa-chevron-down"></i></button>
+                            </div>
+                            <div class="filter-group-content expanded subject-categories" id="subject-sub">
+                                <div class="subject-category-item">
+                                    <label><input type="checkbox" value="programming"> Programming <span class="course-count-badge" data-subject="programming"></span></label>
+                                    <div class="subcategory-toggle"><i class="fas fa-chevron-down"></i></div>
+                                    <div class="subcategories">
+                                        <label><input type="checkbox" value="web development"> Web Development</label>
+                                        <label><input type="checkbox" value="data science"> Data Science</label>
+                                        <label><input type="checkbox" value="algorithms"> Algorithms</label>
+                                        <label><input type="checkbox" value="blockchain"> Blockchain</label>
+                                        <label><input type="checkbox" value="machine learning"> Machine Learning</label>
+                                        <label><input type="checkbox" value="game development"> Game Development</label>
+                                    </div>
+                                </div>
+                                <div class="subject-category-item">
+                                    <label><input type="checkbox" value="mathematics"> Mathematics <span class="course-count-badge" data-subject="mathematics"></span></label>
+                                    <div class="subcategory-toggle"><i class="fas fa-chevron-down"></i></div>
+                                    <div class="subcategories">
+                                        <label><input type="checkbox" value="calculus"> Calculus</label>
+                                        <label><input type="checkbox" value="algebra"> Algebra</label>
+                                        <label><input type="checkbox" value="arithmetic"> Arithmetic</label>
+                                        <label><input type="checkbox" value="differential equations"> Differential Equations</label>
+                                    </div>
+                                </div>
+                                <div class="subject-category-item">
+                                    <label><input type="checkbox" value="science"> Science <span class="course-count-badge" data-subject="science"></span></label>
+                                    <div class="subcategory-toggle"><i class="fas fa-chevron-down"></i></div>
+                                    <div class="subcategories">
+                                        <label><input type="checkbox" value="physics"> Physics</label>
+                                        <label><input type="checkbox" value="chemistry"> Chemistry</label>
+                                        <label><input type="checkbox" value="biology"> Biology</label>
+                                    </div>
+                                </div>
+                                <div class="subject-category-item">
+                                    <label><input type="checkbox" value="languages"> Languages <span class="course-count-badge" data-subject="languages"></span></label>
+                                    <div class="subcategory-toggle"><i class="fas fa-chevron-down"></i></div>
+                                    <div class="subcategories">
+                                        <label><input type="checkbox" value="english"> English</label>
+                                        <label><input type="checkbox" value="hindi"> Hindi</label>
+                                    </div>
+                                </div>
+                                <div class="subject-category-item">
+                                    <label><input type="checkbox" value="business"> Business <span class="course-count-badge" data-subject="business"></span></label>
+                                    <div class="subcategory-toggle"><i class="fas fa-chevron-down"></i></div>
+                                    <div class="subcategories">
+                                        <label><input type="checkbox" value="marketing"> Marketing</label>
+                                        <label><input type="checkbox" value="accounting"> Accounting</label>
+                                        <label><input type="checkbox" value="communication"> Communication</label>
+                                    </div>
+                                </div>
+                                <div class="subject-category-item">
+                                    <label><input type="checkbox" value="creative"> Creative <span class="course-count-badge" data-subject="creative"></span></label>
+                                    <div class="subcategory-toggle"><i class="fas fa-chevron-down"></i></div>
+                                    <div class="subcategories">
+                                        <label><input type="checkbox" value="writing"> Writing</label>
+                                        <label><input type="checkbox" value="design"> Design</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="filter-group">
+                            <div class="filter-group-header" data-category="availability">
+                                <h4>Availability</h4>
+                                <button class="expand-btn" data-category="availability"><i class="fas fa-chevron-down"></i></button>
+                            </div>
+                            <div class="filter-group-content expanded" id="availability-sub">
+                                <button class="availability-btn" data-value="today">Today</button>
+                                <button class="availability-btn" data-value="this_week">This Week</button>
+                                <button class="availability-btn" data-value="weekends_only">Weekends Only</button>
+                            </div>
+                        </div>
+
+                        <div class="filter-group">
+                            <div class="filter-group-header" data-category="timeSlot">
+                                <h4>Time Slot</h4>
+                                <button class="expand-btn" data-category="timeSlot"><i class="fas fa-chevron-down"></i></button>
+                            </div>
+                            <div class="filter-group-content expanded" id="timeSlot-sub">
+                                <button class="time-slot-btn" data-value="morning">Morning</button>
+                                <button class="time-slot-btn" data-value="afternoon">Afternoon</button>
+                                <button class="time-slot-btn" data-value="evening">Evening</button>
+                                <button class="time-slot-btn" data-value="night">Night</button>
+                            </div>
+                        </div>
+
+                        <div class="filter-group">
+                            <div class="filter-group-header" data-category="sessionType">
+                                <h4>Session Type</h4>
+                                <button class="expand-btn" data-category="sessionType"><i class="fas fa-chevron-down"></i></button>
+                            </div>
+                            <div class="filter-group-content expanded" id="sessionType-sub">
+                                <div class="session-type-toggle">
+                                    <button class="session-type-btn active" data-type="1-on-1">1-on-1 Session</button>
+                                    <button class="session-type-btn" data-type="group">Group Session</button>
+                                </div>
+                                <div id="groupSize" style="display: none;">
+                                    <p>Group Size:</p>
+                                    <button class="group-size-btn" data-size="2-5">2-5</button>
+                                    <button class="group-size-btn" data-size="6-10">6-10</button>
+                                    <button class="group-size-btn" data-size="10+">10+</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="filter-group">
+                            <div class="filter-group-header" data-category="difficulty">
+                                <h4>Difficulty Level</h4>
+                                <button class="expand-btn" data-category="difficulty"><i class="fas fa-chevron-down"></i></button>
+                            </div>
+                            <div class="filter-group-content expanded" id="difficulty-sub">
+                                <button class="difficulty-btn" data-value="beginner">Beginner</button>
+                                <button class="difficulty-btn" data-value="intermediate">Intermediate</button>
+                                <button class="difficulty-btn" data-value="advanced">Advanced</button>
+                            </div>
+                        </div>
+
+                        <div class="filter-group">
+                            <div class="filter-group-header" data-category="features">
+                                <h4>Course Features</h4>
+                                <button class="expand-btn" data-category="features"><i class="fas fa-chevron-down"></i></button>
+                            </div>
+                            <div class="filter-group-content expanded course-features" id="features-sub">
+                                <label><input type="checkbox" value="screen share"> Screen Share</label>
+                                <label><input type="checkbox" value="homework help"> Homework Help</label>
+                                <label><input type="checkbox" value="interview prep"> Interview Prep</label>
+                                <label><input type="checkbox" value="exam focused"> Exam Focused</label>
+                            </div>
+                        </div>
+
+                        <div class="filter-group">
+                            <div class="filter-group-header" data-category="instructorType">
+                                <h4>Instructor Type</h4>
+                                <button class="expand-btn" data-category="instructorType"><i class="fas fa-chevron-down"></i></button>
+                            </div>
+                            <div class="filter-group-content expanded instructor-type-filters" id="instructorType-sub">
+                                <label><input type="checkbox" value="student-led"> Student-led</label>
+                                <label><input type="checkbox" value="professional"> Professional</label>
+                                <label><input type="checkbox" value="expert"> Expert</label>
+                            </div>
+                        </div>
+                    </aside>
+
+                    <div class="main-content">
+                        <div class="listing-header">
+                            <h2 class="results-count">Showing 0 of 0 courses</h2>
+                            <div class="view-options">
+                                <div class="sort-by">
+                                    <label for="sortSelect">Sort by:</label>
+                                    <select id="sortSelect">
+                                        <option value="relevance">Relevance</option>
+                                        <option value="rating">Top Rated</option>
+                                        <option value="priceLow">Price: Low to High</option>
+                                        <option value="priceHigh">Price: High to Low</option>
+                                        <option value="newest">Newest</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="course-grid" id="courseGrid">
+                            <!-- Loading skeletons will be here initially -->
+                            <div class="loading-skeleton"></div>
+                            <div class="loading-skeleton"></div>
+                            <div class="loading-skeleton"></div>
+                            <div class="loading-skeleton"></div>
+                            <div class="loading-skeleton"></div>
+                            <div class="loading-skeleton"></div>
+                        </div>
+                        <div class="empty-state" style="display: none;">
+                            <i class="fas fa-box-open"></i>
+                            <h3>No Courses Found</h3>
+                            <p>Try adjusting your filters or search terms.</p>
+                        </div>
+                        <button class="btn btn-secondary load-more-btn" id="loadMoreBtn" style="display: none;">Load More</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-col">
+                <h3>StudyBuddy</h3>
+                <p>Your partner in academic excellence.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Explore Courses</a></li>
+                    <li><a href="become-a-mentor.html">Become a Mentor</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Newsletter</h4>
+                <p>Stay updated with our latest courses and offers.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email">
+                    <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 StudyBuddy. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Authentication Modal -->
+    <div class="auth-modal-overlay is-hidden" id="auth-modal-overlay">
+        <div class="auth-modal">
+            <button class="close-modal-btn" id="close-auth-modal"><i class="fas fa-times"></i></button>
+            <div class="auth-tabs">
+                <button class="auth-tab-btn active" data-tab="login">Login</button>
+                <button class="auth-tab-btn" data-tab="signup">Sign Up</button>
+            </div>
+
+            <!-- Login Form -->
+            <div class="auth-form active" id="login-tab">
+                <h2>Welcome Back!</h2>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" placeholder="your@example.com" required>
+                        <span class="error-message" id="login-email-error"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <div class="password-input-wrapper">
+                            <input type="password" id="login-password" placeholder="••••••••" required>
+                            <button type="button" class="toggle-password-visibility" data-target="login-password">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <span class="error-message" id="login-password-error"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Login</button>
+                    <div class="social-login-divider"><span>OR</span></div>
+                    <button type="button" class="btn btn-secondary btn-block google-btn" id="google-login-btn">
+                        <i class="fab fa-google"></i> Login with Google
+                    </button>
+                </form>
+            </div>
+
+            <!-- Signup Form -->
+            <div class="auth-form" id="signup-tab">
+                <h2>Join StudyBuddy</h2>
+                <form id="signup-form">
+                    <!-- Step 1: Basic Info -->
+                    <div class="signup-step active" data-step="1">
+                        <div class="form-group">
+                            <label for="signup-name">Full Name</label>
+                            <input type="text" id="signup-name" placeholder="John Doe" required>
+                            <span class="error-message" id="signup-name-error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-email">Email</label>
+                            <input type="email" id="signup-email" placeholder="your@example.com" required>
+                            <span class="error-message" id="signup-email-error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-password">Password</label>
+                            <div class="password-input-wrapper">
+                                <input type="password" id="signup-password" placeholder="••••••••" required>
+                                <button type="button" class="toggle-password-visibility" data-target="signup-password">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="password-strength-meter">
+                                <div class="strength-bar"></div>
+                                <span class="strength-text"></span>
+                            </div>
+                            <ul class="password-criteria">
+                                <li data-criterion="length">8+ characters</li>
+                                <li data-criterion="capital">1 capital letter</li>
+                                <li data-criterion="symbol">1 symbol</li>
+                            </ul>
+                            <span class="error-message" id="signup-password-error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-confirm-password">Confirm Password</label>
+                            <div class="password-input-wrapper">
+                                <input type="password" id="signup-confirm-password" placeholder="••••••••" required>
+                                <button type="button" class="toggle-password-visibility" data-target="signup-confirm-password">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <span class="error-message" id="signup-confirm-password-error"></span>
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="signup-terms" required>
+                            <label for="signup-terms">I agree to the <a href="#">Terms & Conditions</a></label>
+                        </div>
+                        <button type="button" class="btn btn-primary btn-block" id="signup-next-btn">Next</button>
+                    </div>
+
+                    <!-- Step 2: Role Selection (Optional, for future mentor signup) -->
+                    <div class="signup-step" data-step="2">
+                        <div class="form-group">
+                            <label for="signup-username">Choose a Username</label>
+                            <input type="text" id="signup-username" placeholder="e.g., studybuddy_john" required>
+                            <span class="error-message" id="signup-username-error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>I want to sign up as:</label>
+                            <div class="role-selection">
+                                <label class="role-card">
+                                    <input type="radio" name="signup-role" value="student" checked>
+                                    <div class="role-content">
+                                        <i class="fas fa-user-graduate"></i>
+                                        <h4>Student</h4>
+                                        <p>Find mentors and book sessions.</p>
+                                    </div>
+                                </label>
+                                <label class="role-card">
+                                    <input type="radio" name="signup-role" value="mentor">
+                                    <div class="role-content">
+                                        <i class="fas fa-chalkboard-teacher"></i>
+                                        <h4>Mentor</h4>
+                                        <p>Share your knowledge and earn.</p>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" id="signup-back-btn">Back</button>
+                            <button type="submit" class="btn btn-primary">Complete Sign Up</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Success Message -->
+                    <div class="signup-step" data-step="3">
+                        <div class="success-message">
+                            <i class="fas fa-check-circle"></i>
+                            <h3>Account Created!</h3>
+                            <p>Welcome, <strong id="success-username"></strong>! You can now explore courses and connect with mentors.</p>
+                            <button type="button" class="btn btn-primary" id="start-exploring-btn">Start Exploring</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>

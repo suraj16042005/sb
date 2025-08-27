@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentor Dashboard - StudyBuddy</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="notification-area" class="notification-area"></div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-book-open book-icon"></i>
+                <span class="logo-text">StudyBuddy</span>
+            </a>
+            <div class="nav-items">
+                <a href="index.html" class="nav-link"><b>Explore</b></a>
+                <a href="#" id="tutor-nav-link" class="nav-link"><b>Tutor</b></a>
+                <a href="pricing.html" class="nav-link"><b>Pricing</b></a>
+                <a href="about.html" class="nav-link"><b>About Us</b></a>
+            </div>
+            <div class="nav-right">
+                <div class="coins-display" id="coinsDisplay">
+                    <i class="fas fa-coins coin-icon"></i>
+                    <span class="coin-balance">0</span>
+                    <div class="coin-popover" id="coin-popover"></div>
+                </div>
+                <button class="join-btn" id="join-btn">Join StudyBuddy</button>
+                
+                <div class="user-dropdown-wrapper" id="user-dropdown-wrapper" style="display: none;">
+                    <button class="btn btn-secondary user-profile-btn" id="user-profile-btn">
+                        <img src="https://via.placeholder.com/32x32" alt="User Avatar" class="user-avatar-small" id="user-avatar-small">
+                        <span id="user-name-display">Hi! User</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="user-dropdown-menu" id="user-dropdown-menu">
+                        <a href="/my-sessions.html" class="dropdown-item" id="my-sessions-link"><i class="fas fa-calendar-alt"></i> My Sessions</a>
+                        <a href="/dashboard.html" class="dropdown-item" id="my-dashboard-link" style="display: none;"><i class="fas fa-tachometer-alt"></i> My Dashboard</a>
+                        <a href="/settings.html" class="dropdown-item" id="settings-link"><i class="fas fa-cog"></i> Settings</a>
+                        <hr>
+                        <button class="dropdown-item logout-btn" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                    </div>
+                </div>
+            </div>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay">
+        <div class="mobile-nav" id="mobileNav">
+            <div class="mobile-nav-header">
+                <a href="index.html" class="logo">StudyBuddy</a>
+                <button class="close-mobile-menu" id="closeMobileMenu">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="mobile-nav-actions">
+                <!-- User pill moved to top -->
+                <div class="user-dropdown-wrapper" id="mobile-user-dropdown-wrapper" style="display: none;">
+                    <button class="btn btn-secondary user-profile-btn" id="mobile-user-profile-btn">
+                        <img src="https://via.placeholder.com/32x32" alt="User Avatar" class="user-avatar-small" id="mobile-user-avatar-small">
+                        <span id="mobile-user-name-display">Hi! User</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="user-dropdown-menu" id="mobile-user-dropdown-menu">
+                        <a href="/my-sessions.html" class="dropdown-item" id="mobile-my-sessions-link"><i class="fas fa-calendar-alt"></i> My Sessions</a>
+                        <a href="/dashboard.html" class="dropdown-item" id="mobile-my-dashboard-link" style="display: none;"><i class="fas fa-tachometer-alt"></i> My Dashboard</a>
+                        <a href="/settings.html" class="dropdown-item" id="mobile-settings-link"><i class="fas fa-cog"></i> Settings</a>
+                        <hr>
+                        <button class="dropdown-item logout-btn" id="mobile-logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                    </div>
+                </div>
+                <div class="coins-display" id="mobileCoinsDisplay">
+                    <i class="fas fa-coins coin-icon"></i>
+                    <span class="coin-balance">0</span>
+                    <div class="coin-popover" id="mobile-coin-popover"></div>
+                </div>
+                <button class="btn btn-secondary" id="mobile-join-btn">Join StudyBuddy</button>
+            </div>
+            <nav class="mobile-nav-items">
+                <a href="index.html" class="mobile-nav-item">Explore</a>
+                <a href="#" id="mobile-tutor-nav-link" class="mobile-nav-item">Tutor</a>
+                <a href="pricing.html" class="mobile-nav-item">Pricing</a>
+                <a href="about.html" class="mobile-nav-item">About Us</a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="profile-summary">
+                <img src="https://via.placeholder.com/80x80" alt="Mentor Avatar" id="profile-menu-avatar">
+                <h3 id="profile-menu-name">Mentor Name</h3>
+                <p id="profile-menu-headline">Expert in Subject</p>
+                <div class="quick-actions">
+                    <button class="action-btn" data-view="profile"><i class="fas fa-user-circle"></i> Profile</button>
+                    <button class="action-btn" data-view="earnings"><i class="fas fa-wallet"></i> Earnings</button>
+                    <button class="action-btn" data-view="courses"><i class="fas fa-book"></i> Courses</button>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="#" class="nav-link active" data-view="dashboard-home"><i class="fas fa-home"></i> Dashboard Home</a></li>
+                    <li><a href="#" class="nav-link" data-view="schedule"><i class="fas fa-calendar-alt"></i> My Schedule</a></li>
+                    <li><a href="#" class="nav-link" data-view="courses"><i class="fas fa-book-open"></i> My Courses</a></li>
+                    <li><a href="#" class="nav-link" data-view="messages"><i class="fas fa-comments"></i> Messages <span class="badge" id="messages-badge">0</span></a></li>
+                    <li><a href="#" class="nav-link" data-view="analytics"><i class="fas fa-chart-line"></i> Analytics</a></li>
+                    <li><a href="#" class="nav-link" data-view="earnings"><i class="fas fa-dollar-sign"></i> Earnings</a></li>
+                    <li><a href="#" class="nav-link" data-view="profile"><i class="fas fa-user-edit"></i> My Profile</a></li>
+                    <li id="admin-mentor-management-link" style="display: none;"><a href="#" class="nav-link" data-view="mentor-management"><i class="fas fa-user-tie"></i> Mentor Management</a></li>
+                    <li><a href="#" class="nav-link" data-view="settings"><i class="fas fa-cog"></i> Settings</a></li>
+                    <li><a href="#" class="nav-link" id="sidebar-logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <div class="dashboard-header">
+                <div>
+                    <h1 id="header-title">Welcome back, Mentor!</h1>
+                    <p id="header-subtitle">Here's your performance overview for this month.</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-secondary" id="new-session-btn"><i class="fas fa-plus-circle"></i> New Session</button>
+                    <button class="btn btn-primary" id="withdraw-earnings-btn"><i class="fas fa-wallet"></i> Withdraw Funds</button>
+                </div>
+            </div>
+
+            <!-- Dashboard Home View -->
+            <div id="dashboard-home-view" class="dashboard-view active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-users"></i>
+                        <h3>Total Students</h3>
+                        <p>125</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-calendar-check"></i>
+                        <h3>Sessions Completed</h3>
+                        <p>48</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-star"></i>
+                        <h3>Average Rating</h3>
+                        <p>4.9</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-dollar-sign"></i>
+                        <h3>Total Earnings</h3>
+                        <p class="coin-value">15,200</p>
+                    </div>
+                </div>
+
+                <div class="chart-section card">
+                    <h3>Earnings Overview</h3>
+                    <div class="chart-controls">
+                        <select id="earnings-chart-period">
+                            <option value="monthly">Monthly</option>
+                            <option value="biannual">Bi-Annual</option>
+                        </select>
+                    </div>
+                    <div class="chart-container-wrapper"> <!-- Added wrapper for chart sizing -->
+                        <canvas id="earningsChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="recent-activity card">
+                    <h3>Recent Sessions</h3>
+                    <div class="table-responsive">
+                        <table id="recent-sessions-table">
+                            <thead>
+                                <tr>
+                                    <th>Student</th>
+                                    <th>Course</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Earnings</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Recent sessions will be loaded here by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- My Schedule View -->
+            <div id="schedule-view" class="dashboard-view">
+                <div class="card" id="schedule-container">
+                    <!-- Schedule content will be rendered here by JS -->
+                </div>
+            </div>
+
+            <!-- My Courses View -->
+            <div id="courses-view" class="dashboard-view">
+                <div class="card" id="courses-container">
+                    <!-- Courses content will be rendered here by JS -->
+                </div>
+            </div>
+
+            <!-- Messages View -->
+            <div id="messages-view" class="dashboard-view">
+                <div class="messages-layout">
+                    <div class="conversations-sidebar card">
+                        <h3>Conversations</h3>
+                        <div class="conversations-list" id="conversations-list">
+                            <!-- Conversations will be rendered here by JS -->
+                        </div>
+                    </div>
+                    <div class="chat-area card">
+                        <div class="chat-header" id="chat-header">
+                            Select a conversation to start chatting
+                        </div>
+                        <div class="chat-body" id="chat-body">
+                            <!-- Messages will be rendered here by JS -->
+                        </div>
+                        <div class="chat-footer" id="chat-footer">
+                            <input type="text" placeholder="Type your message...">
+                            <button class="btn-primary"><i class="fas fa-paper-plane"></i> Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analytics View -->
+            <div id="analytics-view" class="dashboard-view">
+                <div class="card">
+                    <h3>Analytics Overview</h3>
+                    <p>Detailed analytics coming soon!</p>
+                </div>
+            </div>
+
+            <!-- Earnings View -->
+            <div id="earnings-view" class="dashboard-view">
+                <div class="card" id="earnings-container">
+                    <!-- Earnings content will be rendered here by JS -->
+                </div>
+            </div>
+
+            <!-- My Profile View -->
+            <div id="profile-view" class="dashboard-view">
+                <div class="card profile-form-card">
+                    <h3>Personal Information</h3>
+                    <form id="profile-form">
+                        <div class="form-group">
+                            <label for="profile-name">Full Name</label>
+                            <input type="text" id="profile-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="profile-email">Email Address</label>
+                            <input type="email" id="profile-email" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="profile-headline">Headline</label>
+                            <input type="text" id="profile-headline" placeholder="e.g., Expert in Web Development">
+                        </div>
+                        <div class="form-group">
+                            <label for="profile-bio">Bio</label>
+                            <textarea id="profile-bio" rows="5" placeholder="Tell us about yourself and your teaching style..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="profile-avatar-url">Avatar URL</label>
+                            <input type="url" id="profile-avatar-url" placeholder="https://via.placeholder.com/150">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Profile</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Mentor Management View (Admin Only) -->
+            <div id="mentor-management-view" class="dashboard-view">
+                <div class="card">
+                    <h3>Pending Mentor Applications</h3>
+                    <div class="table-responsive">
+                        <table id="pending-applications-table">
+                            <thead>
+                                <tr>
+                                    <th>Applicant Name</th>
+                                    <th>Email</th>
+                                    <th>Submitted On</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Pending applications will be loaded here by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card mt-4">
+                    <h3>Current Mentors</h3>
+                    <div class="table-responsive">
+                        <table id="current-mentors-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Current mentors will be loaded here by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings View -->
+            <div id="settings-view" class="dashboard-view">
+                <div class="card settings-form-card">
+                    <h3>Account Settings</h3>
+                    <form id="settings-form">
+                        <div class="form-group">
+                            <label for="settings-email">Email Address</label>
+                            <input type="email" id="settings-email" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="settings-password">New Password</label>
+                            <input type="password" id="settings-password" placeholder="Leave blank to keep current password">
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="email-notifications">
+                            <label for="email-notifications">Email Notifications</label>
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="sms-notifications">
+                            <label for="sms-notifications">SMS Notifications</label>
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="profile-visibility">
+                            <label for="profile-visibility">Make Profile Public</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Settings</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Course Creation Wizard Modal -->
+    <div class="modal-overlay" id="course-wizard-overlay">
+        <div class="modal-content course-wizard">
+            <div class="modal-header">
+                <h2 id="course-wizard-title">Create New Course</h2>
+                <button class="close-modal-btn" id="close-wizard-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="progress-bar-container">
+                    <div class="progress-bar-fill" id="courseWizardProgressBarFill"></div>
+                    <span class="progress-text" id="courseWizardProgressText">Step 1 of 3</span>
+                </div>
+                <form id="course-creation-form">
+                    <!-- Step 1: Basic Info -->
+                    <div class="course-wizard-step" id="course-step-1" data-step="1">
+                        <h3>Basic Course Information</h3>
+                        <div class="form-group">
+                            <label for="course-title">Course Title</label>
+                            <input type="text" id="course-title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="course-short-description">Short Description</label>
+                            <input type="text" id="course-short-description" placeholder="A brief overview of the course" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="course-description">Full Description</label>
+                            <textarea id="course-description" rows="4" placeholder="Detailed description of what students will learn" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="course-image-url">Course Image URL</label>
+                            <input type="url" id="course-image-url" placeholder="Optional: URL for course thumbnail">
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Details & Pricing -->
+                    <div class="course-wizard-step" id="course-step-2" data-step="2" style="display: none;">
+                        <h3>Course Details & Pricing</h3>
+                        <div class="form-group">
+                            <label for="course-subject">Subject</label>
+                            <input type="text" id="course-subject" placeholder="e.g., Mathematics, Web Development" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="course-language">Language</label>
+                            <input type="text" id="course-language" placeholder="e.g., English, Hindi" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="course-difficulty">Difficulty Level</label>
+                            <select id="course-difficulty" required>
+                                <option value="">Select Difficulty</option>
+                                <option value="beginner">Beginner</option>
+                                <option value="intermediate">Intermediate</option>
+                                <option value="advanced">Advanced</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="course-price">Price per Session (Coins)</label>
+                            <input type="number" id="course-price" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="course-duration">Session Duration (Minutes)</label>
+                            <input type="number" id="course-duration" min="15" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="course-sessions">Total Sessions</label>
+                            <input type="number" id="course-sessions" min="1" required>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Review & Publish -->
+                    <div class="course-wizard-step" id="course-step-3" data-step="3" style="display: none;">
+                        <h3>Review & Publish</h3>
+                        <div id="course-review-summary" class="review-summary card">
+                            <!-- Summary will be populated by JS -->
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="course-is-active">
+                            <label for="course-is-active">Publish Course (Make Active)</label>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn-secondary" id="course-wizard-back-btn" style="display: none;">Back</button>
+                        <button type="button" class="btn-primary" id="course-wizard-next-btn">Next</button>
+                        <button type="submit" class="btn-primary" id="course-wizard-submit-btn" style="display: none;">Create Course</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Generic Modal for Session Details, Withdrawal, etc. -->
+    <div class="modal-overlay" id="generic-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Modal Title</h2>
+                <button class="close-modal-btn" id="close-modal-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Modal content will be injected here -->
+            </div>
+            <div class="modal-footer" id="modal-footer">
+                <!-- Modal footer buttons will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="script.js"></script>
+    <script type="module" src="dashboard.js"></script>
+</body>
+</html>

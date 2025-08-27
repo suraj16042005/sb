@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyBuddy - Become a Mentor</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="onboarding.css"> <!-- Link to new onboarding CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div id="notification-area" class="notification-area"></div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-book-open book-icon"></i>
+                <span class="logo-text">StudyBuddy</span>
+            </a>
+            <div class="nav-items">
+                <a href="index.html" class="nav-link"><b>Explore</b></a>
+                <a href="#" id="tutor-nav-link" class="nav-link"><b>Tutor</b></a>
+                <a href="pricing.html" class="nav-link"><b>Pricing</b></a>
+                <a href="about.html" class="nav-link"><b>About Us</b></a>
+            </div>
+            <div class="nav-right">
+                <div class="coins-display" id="coinsDisplay">
+                    <i class="fas fa-coins coin-icon"></i>
+                    <span class="coin-balance">0</span>
+                    <div class="coin-popover" id="coin-popover"></div>
+                </div>
+                <button class="join-btn" id="join-btn">Join StudyBuddy</button>
+                
+                <div class="user-dropdown-wrapper" id="user-dropdown-wrapper" style="display: none;">
+                    <button class="btn btn-secondary user-profile-btn" id="user-profile-btn">
+                        <img src="https://via.placeholder.com/32x32" alt="User Avatar" class="user-avatar-small" id="user-avatar-small">
+                        <span id="user-name-display">Hi! User</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="user-dropdown-menu" id="user-dropdown-menu">
+                        <a href="/my-sessions.html" class="dropdown-item" id="my-sessions-link"><i class="fas fa-calendar-alt"></i> My Sessions</a>
+                        <a href="/dashboard.html" class="dropdown-item" id="my-dashboard-link" style="display: none;"><i class="fas fa-tachometer-alt"></i> My Dashboard</a>
+                        <a href="/settings.html" class="dropdown-item" id="settings-link"><i class="fas fa-cog"></i> Settings</a>
+                        <hr>
+                        <button class="dropdown-item logout-btn" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                    </div>
+                </div>
+            </div>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay">
+        <div class="mobile-nav" id="mobileNav">
+            <div class="mobile-nav-header">
+                <a href="index.html" class="logo">StudyBuddy</a>
+                <button class="close-mobile-menu" id="closeMobileMenu">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="mobile-nav-actions">
+                <!-- User pill moved to top -->
+                <div class="user-dropdown-wrapper" id="mobile-user-dropdown-wrapper" style="display: none;">
+                    <button class="btn btn-secondary user-profile-btn" id="mobile-user-profile-btn">
+                        <img src="https://via.placeholder.com/32x32" alt="User Avatar" class="user-avatar-small" id="mobile-user-avatar-small">
+                        <span id="mobile-user-name-display">Hi! User</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="user-dropdown-menu" id="mobile-user-dropdown-menu">
+                        <a href="/my-sessions.html" class="dropdown-item" id="mobile-my-sessions-link"><i class="fas fa-calendar-alt"></i> My Sessions</a>
+                        <a href="/dashboard.html" class="dropdown-item" id="mobile-my-dashboard-link" style="display: none;"><i class="fas fa-tachometer-alt"></i> My Dashboard</a>
+                        <a href="/settings.html" class="dropdown-item" id="mobile-settings-link"><i class="fas fa-cog"></i> Settings</a>
+                        <hr>
+                        <button class="dropdown-item logout-btn" id="mobile-logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                    </div>
+                </div>
+                <div class="coins-display" id="mobileCoinsDisplay">
+                    <i class="fas fa-coins coin-icon"></i>
+                    <span class="coin-balance">0</span>
+                    <div class="coin-popover" id="mobile-coin-popover"></div>
+                </div>
+                <button class="btn btn-secondary" id="mobile-join-btn">Join StudyBuddy</button>
+            </div>
+            <nav class="mobile-nav-items">
+                <a href="index.html" class="mobile-nav-item">Explore</a>
+                <a href="#" id="mobile-tutor-nav-link" class="mobile-nav-item">Tutor</a>
+                <a href="pricing.html" class="mobile-nav-item">Pricing</a>
+                <a href="about.html" class="mobile-nav-item">About Us</a>
+            </nav>
+        </div>
+    </div>
+
+    <main class="onboarding-main">
+        <div class="onboarding-container">
+            <!-- Welcome Screen -->
+            <div class="onboarding-step" id="welcome-screen">
+                <div class="welcome-content">
+                    <div id="lottie-welcome" class="lottie-animation"></div>
+                    <h1>Become a StudyBuddy Mentor</h1>
+                    <p class="subtitle">Share your expertise, empower students, and earn a competitive income.</p>
+                    <div class="benefits-grid">
+                        <div class="benefit-item">
+                            <i class="fas fa-dollar-sign"></i>
+                            <h3>Earn ₹500-2000/hour</h3>
+                            <p>Set your own rates and maximize your earnings.</p>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-clock"></i>
+                            <h3>Flexible Schedule</h3>
+                            <p>Teach when you want, from wherever you are.</p>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-star"></i>
+                            <h3>Build Your Reputation</h3>
+                            <p>Grow your profile and become a top mentor.</p>
+                        </div>
+                    </div>
+                    <button class="btn cta-btn" id="start-app-btn">Start Application</button>
+                    <p class="completion-time">Estimated completion time: 15 minutes</p>
+                </div>
+            </div>
+
+            <!-- Form Steps Container -->
+            <div id="form-steps" style="display: none;">
+                <div class="progress-bar-container">
+                    <div class="progress-bar">
+                        <div class="progress-bar-fill" id="progressBarFill"></div>
+                    </div>
+                    <span id="progress-text">Step 1 of 7</span>
+                </div>
+
+                <form id="onboarding-form">
+                    <!-- Step 1: Personal Information -->
+                    <div class="onboarding-step" id="step-1">
+                        <h2>Personal Information</h2>
+                        <p class="step-subtitle">Tell us a bit about yourself.</p>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="fullName">Full Name</label>
+                                <input type="text" id="fullName" name="fullName" placeholder="John Doe" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="john.doe@example.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" placeholder="e.g., 9876543210" pattern="[0-9]{10}" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="dob">Date of Birth</label>
+                                <input type="date" id="dob" name="dob" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="gender">Gender (Optional)</label>
+                                <select id="gender" name="gender">
+                                    <option value="">Select</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <input type="text" id="city" name="city" placeholder="e.g., Mumbai" required>
+                            </div>
+                            <div class="form-group full-width">
+                                <label>Preferred Languages (Min 1)</label>
+                                <div class="language-checkbox-grid">
+                                    <label><input type="checkbox" name="languages" value="english"> English</label>
+                                    <label><input type="checkbox" name="languages" value="hindi"> Hindi</label>
+                                    <label><input type="checkbox" name="languages" value="bengali"> Bengali</label>
+                                    <label><input type="checkbox" name="languages" value="tamil"> Tamil</label>
+                                    <label><input type="checkbox" name="languages" value="telugu"> Telugu</label>
+                                    <label><input type="checkbox" name="languages" value="marathi"> Marathi</label>
+                                    <label><input type="checkbox" name="languages" value="gujarati"> Gujarati</label>
+                                    <label><input type="checkbox" name="languages" value="kannada"> Kannada</label>
+                                    <label><input type="checkbox" name="languages" value="malayalam"> Malayalam</label>
+                                    <label><input type="checkbox" name="languages" value="punjabi"> Punjabi</label>
+                                </div>
+                                <small class="error-message" id="languages-error"></small>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="bio">Short Bio (Max 500 characters)</label>
+                                <textarea id="bio" name="bio" rows="4" maxlength="500" placeholder="Tell us about yourself and your teaching philosophy..."></textarea>
+                                <span id="char-count">0/500 characters</span>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="profilePhoto">Profile Photo</label>
+                                <input type="file" id="profilePhoto" name="profilePhoto" accept="image/*" class="file-input">
+                                <label for="profilePhoto" class="file-input-label"><i class="fas fa-upload"></i> Upload Photo</label>
+                                <span class="file-name" id="profilePhoto-name">No file chosen</span>
+                                <p class="form-hint">A clear, professional photo helps students connect with you.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Education & Experience -->
+                    <div class="onboarding-step" id="step-2" style="display: none;">
+                        <h2>Education & Experience</h2>
+                        <p class="step-subtitle">Highlight your academic and professional background.</p>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="educationLevel">Highest Education Level</label>
+                                <select id="educationLevel" name="educationLevel" required>
+                                    <option value="">Select</option>
+                                    <option value="highschool">High School</option>
+                                    <option value="bachelors">Bachelor's Degree</option>
+                                    <option value="masters">Master's Degree</option>
+                                    <option value="phd">Ph.D.</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="institution">Institution Name</label>
+                                <input type="text" id="institution" name="institution" placeholder="e.g., Delhi University" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="gradYear">Graduation Year</label>
+                                <input type="number" id="gradYear" name="gradYear" placeholder="YYYY" min="1950" max="2024" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="fieldOfStudy">Field of Study</label>
+                                <input type="text" id="fieldOfStudy" name="fieldOfStudy" placeholder="e.g., Computer Science" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="profession">Current Profession/Role</label>
+                                <input type="text" id="profession" name="profession" placeholder="e.g., Software Engineer">
+                            </div>
+                            <div class="form-group">
+                                <label for="experience">Years of Professional Experience</label>
+                                <input type="number" id="experience" name="experience" min="0" placeholder="e.g., 5">
+                            </div>
+                            <div class="form-group full-width">
+                                <label>Have you taught before?</label>
+                                <div class="radio-group">
+                                    <label><input type="radio" name="teachingExperience" value="yes"> Yes</label>
+                                    <label><input type="radio" name="teachingExperience" value="no" checked> No</label>
+                                </div>
+                            </div>
+                            <div class="form-group full-width" id="teachingDetails" style="display: none;">
+                                <label for="previousTeachingDetails">Please describe your previous teaching experience:</label>
+                                <textarea id="previousTeachingDetails" name="previousTeachingDetails" rows="3" placeholder="e.g., Taught math to high school students for 2 years..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Subjects & Expertise -->
+                    <div class="onboarding-step" id="step-3" style="display: none;">
+                        <h2>Subjects & Expertise</h2>
+                        <p class="step-subtitle">Select the subjects you can teach and your proficiency.</p>
+                        <div class="subject-tree">
+                            <div class="form-group full-width">
+                                <label>Select Subjects (Min 3, Max 10)</label>
+                                <div class="subject-category">
+                                    <h4>Science & Math</h4>
+                                    <div class="subject-options">
+                                        <label><input type="checkbox" name="subjects" value="physics"> Physics</label>
+                                        <label><input type="checkbox" name="subjects" value="chemistry"> Chemistry</label>
+                                        <label><input type="checkbox" name="subjects" value="biology"> Biology</label>
+                                        <label><input type="checkbox" name="subjects" value="math"> Mathematics</label>
+                                        <label><input type="checkbox" name="subjects" value="calculus"> Calculus</label>
+                                        <label><input type="checkbox" name="subjects" value="statistics"> Statistics</label>
+                                    </div>
+                                </div>
+                                <div class="subject-category">
+                                    <h4>Computer Science</h4>
+                                    <div class="subject-options">
+                                        <label><input type="checkbox" name="subjects" value="programming"> Programming (Python, Java, C++)</label>
+                                        <label><input type="checkbox" name="subjects" value="webdev"> Web Development (HTML, CSS, JS)</label>
+                                        <label><input type="checkbox" name="subjects" value="datascience"> Data Science</label>
+                                        <label><input type="checkbox" name="subjects" value="algorithms"> Algorithms & Data Structures</label>
+                                    </div>
+                                </div>
+                                <div class="subject-category">
+                                    <h4>Business & Economics</h4>
+                                    <div class="subject-options">
+                                        <label><input type="checkbox" name="subjects" value="economics"> Economics</label>
+                                        <label><input type="checkbox" name="subjects" value="finance"> Finance</label>
+                                        <label><input type="checkbox" name="subjects" value="accounting"> Accounting</label>
+                                    </div>
+                                </div>
+                                <div class="subject-category">
+                                    <h4>Languages & Humanities</h4>
+                                    <div class="subject-options">
+                                        <label><input type="checkbox" name="subjects" value="englishlit"> English Literature</label>
+                                        <label><input type="checkbox" name="subjects" value="history"> History</label>
+                                        <label><input type="checkbox" name="subjects" value="hindi"> Hindi Language</label>
+                                    </div>
+                                </div>
+                                <small class="error-message" id="subjects-error"></small>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="customSubjects">Other Subjects / Custom Expertise</label>
+                                <input type="text" id="customSubjects" name="customSubjects" placeholder="e.g., Digital Marketing, Chess, Music Theory (comma-separated)">
+                            </div>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Your Teaching Approach Preferences:</label>
+                            <div class="checkbox-group">
+                                <label><input type="checkbox" name="teachingApproach" value="exam-focused"> Exam-focused</label>
+                                <label><input type="checkbox" name="teachingApproach" value="project-based"> Project-based</label>
+                                <label><input type="checkbox" name="teachingApproach" value="conceptual"> Conceptual Understanding</label>
+                                <label><input type="checkbox" name="teachingApproach" value="interview-prep"> Interview Preparation</label>
+                            </div>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Target Audience:</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="targetAudience" value="students" checked> School/College Students</label>
+                                <label><input type="radio" name="targetAudience" value="professionals"> Professionals</label>
+                                <label><input type="radio" name="targetAudience" value="both"> Both</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Document Verification -->
+                    <div class="onboarding-step" id="step-4" style="display: none;">
+                        <h2>Document Verification</h2>
+                        <p class="step-subtitle">Please upload the required documents for verification.</p>
+                        <div class="form-grid">
+                            <div class="form-group full-width">
+                                <label for="idFront">Government ID (Front)</label>
+                                <input type="file" id="idFront" name="idFront" accept="image/*,.pdf" class="file-input" required>
+                                <label for="idFront" class="file-input-label"><i class="fas fa-upload"></i> Upload Front</label>
+                                <span class="file-name" id="idFront-name">No file chosen</span>
+                                <p class="form-hint">e.g., Aadhaar Card, Passport, Driver's License</p>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="idBack">Government ID (Back)</label>
+                                <input type="file" id="idBack" name="idBack" accept="image/*,.pdf" class="file-input" required>
+                                <label for="idBack" class="file-input-label"><i class="fas fa-upload"></i> Upload Back</label>
+                                <span class="file-name" id="idBack-name">No file chosen</span>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="eduCert">Highest Educational Certificate</label>
+                                <input type="file" id="eduCert" name="eduCert" accept="image/*,.pdf" class="file-input" required>
+                                <label for="eduCert" class="file-input-label"><i class="fas fa-upload"></i> Upload Certificate</label>
+                                <span class="file-name" id="eduCert-name">No file chosen</span>
+                                <p class="form-hint">e.g., Degree certificate, Mark sheets</p>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="profCert">Professional Certifications (Optional)</label>
+                                <input type="file" id="profCert" name="profCert" accept="image/*,.pdf" class="file-input">
+                                <label for="profCert" class="file-input-label"><i class="fas fa-upload"></i> Upload Certifications</label>
+                                <span class="file-name" id="profCert-name">No file chosen</span>
+                                <p class="form-hint">Any relevant industry certifications.</p>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="teachingCred">Previous Teaching Credentials (Optional)</label>
+                                <input type="file" id="teachingCred" name="teachingCred" accept="image/*,.pdf" class="file-input">
+                                <label for="teachingCred" class="file-input-label"><i class="fas fa-upload"></i> Upload Credentials</label>
+                                <span class="file-name" id="teachingCred-name">No file chosen</span>
+                                <p class="form-hint">e.g., Teaching licenses, experience letters.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 5: Demo Video Recording -->
+                    <div class="onboarding-step" id="step-5" style="display: none;">
+                        <h2>Demo Video Recording</h2>
+                        <p class="step-subtitle">Showcase your teaching style with a short demo lesson.</p>
+                        <div class="video-instructions">
+                            <h4>Instructions:</h4>
+                            <ul>
+                                <li><i class="fas fa-check-circle"></i> Record a 3-5 minute lesson on your favorite subject.</li>
+                                <li><i class="fas fa-check-circle"></i> Explain a concept clearly and concisely.</li>
+                                <li><i class="fas fa-check-circle"></i> Ensure good audio and video quality.</li>
+                                <li><i class="fas fa-check-circle"></i> You can use a whiteboard, slides, or just speak directly.</li>
+                            </ul>
+                            <h4>Technical Requirements:</h4>
+                            <ul>
+                                <li><i class="fas fa-video"></i> Video format: MP4, MOV, AVI</li>
+                                <li><i class="fas fa-sd-card"></i> Max file size: 100MB</li>
+                                <li><i class="fas fa-microphone"></i> Clear audio, minimal background noise</li>
+                            </ul>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="demoVideo">Upload Demo Video</label>
+                            <input type="file" id="demoVideo" name="demoVideo" accept="video/*" class="file-input" required>
+                            <label for="demoVideo" class="file-input-label"><i class="fas fa-upload"></i> Upload Video</label>
+                            <span class="file-name" id="demoVideo-name">No file chosen</span>
+                            <p class="form-hint">Alternatively, you can use a built-in recorder (feature coming soon).</p>
+                        </div>
+                        <!-- Placeholder for video preview -->
+                        <div id="video-preview" style="display: none; margin-top: 20px;">
+                            <h4>Video Preview:</h4>
+                            <video controls width="100%" height="auto"></video>
+                            <button type="button" class="btn btn-secondary" style="margin-top: 10px;">Re-record / Re-upload</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 6: NDA Agreement -->
+                    <div class="onboarding-step" id="step-6" style="display: none;">
+                        <h2>Non-Disclosure Agreement (NDA)</h2>
+                        <p class="step-subtitle">Please review and agree to our Non-Disclosure Agreement.</p>
+                        <div class="nda-container">
+                            <h3>StudyBuddy Mentor NDA</h3>
+                            <p>This Non-Disclosure Agreement ("Agreement") is entered into by and between StudyBuddy ("Company") and the Mentor (referred to as "You" or "Mentor").</p>
+                            <p><strong>1. Confidential Information:</strong> You acknowledge that during your engagement with StudyBuddy, you may be exposed to confidential and proprietary information, including but not limited to, student data, course materials, business strategies, software, and other intellectual property ("Confidential Information").</p>
+                            <p><strong>2. Non-Disclosure Obligation:</strong> You agree to keep all Confidential Information strictly confidential and not to disclose, publish, or disseminate it to any third party without the prior written consent of StudyBuddy. You further agree not to use Confidential Information for any purpose other than fulfilling your duties as a StudyBuddy Mentor.</p>
+                            <p><strong>3. Exceptions:</strong> The obligations of confidentiality shall not apply to information that (a) is or becomes publicly available through no fault of your own; (b) was known to you prior to disclosure by StudyBuddy; (c) is independently developed by you without use of Confidential Information; or (d) is required to be disclosed by law, provided you give StudyBuddy prompt notice of such requirement.</p>
+                            <p><strong>4. Return of Materials:</strong> Upon termination of your engagement or at any time upon StudyBuddy's request, you agree to promptly return all Confidential Information and any copies thereof to StudyBuddy.</p>
+                            <p><strong>5. Remedies:</strong> You acknowledge that unauthorized disclosure of Confidential Information may cause irreparable harm to StudyBuddy, for which monetary damages may be an insufficient remedy. Therefore, StudyBuddy shall be entitled to seek injunctive relief in addition to any other remedies available at law or in equity.</p>
+                            <p><strong>6. Governing Law:</strong> This Agreement shall be governed by and construed in accordance with the laws of India.</p>
+                            <p>By proceeding, you confirm that you have read, understood, and agree to the terms of this Non-Disclosure Agreement.</p>
+                        </div>
+                        <div class="form-group full-width">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="ndaAgree" name="ndaAgree" required>
+                                I have read and understood the Non-Disclosure Agreement.
+                            </label>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="digitalSignature">Digital Signature (Type your Full Name)</label>
+                            <input type="text" id="digitalSignature" name="digitalSignature" placeholder="Type your full name as signature" required>
+                            <p class="form-hint">Your signature must match the full name provided in Step 1.</p>
+                        </div>
+                        <p class="form-hint legal-disclaimer">This digital signature constitutes a legally binding agreement.</p>
+                        <button type="button" class="btn btn-secondary" style="margin-top: 10px;"><i class="fas fa-download"></i> Download NDA as PDF</button>
+                    </div>
+
+                    <!-- Step 7: Application Review -->
+                    <div class="onboarding-step" id="step-7" style="display: none;">
+                        <h2>Application Review</h2>
+                        <p class="step-subtitle">Please review all the information you've provided before final submission.</p>
+                        <div class="review-summary" id="review-summary">
+                            <!-- Summary will be populated by JS -->
+                        </div>
+                        <p class="form-hint">You can go back to any step to edit your information.</p>
+                        <p class="form-hint">Expected review timeline: 3-5 business days. We will notify you via email.</p>
+                        <p class="form-hint">For any queries, please contact our support team at support@studybuddy.com.</p>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="navigation-buttons">
+                        <button type="button" class="btn secondary-btn" id="back-btn" style="display: none;">Back</button>
+                        <button type="button" class="btn cta-btn" id="next-btn">Next</button>
+                        <button type="submit" class="btn cta-btn" id="submit-btn" style="display: none;">Submit Application</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Success Screen -->
+            <div class="onboarding-step" id="success-screen" style="display: none;">
+                <div class="success-content">
+                    <div id="lottie-success" class="lottie-animation"></div>
+                    <h2>Application Submitted!</h2>
+                    <p>Thank you for applying to become a StudyBuddy Mentor. We have received your application and our team will review it shortly.</p>
+                    <p>You will receive an email notification regarding the status of your application within 3-5 business days.</p>
+                    <button class="btn cta-btn" id="start-app-btn">Go to Temporary Dashboard</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-col">
+                <h3>StudyBuddy</h3>
+                <p>Your partner in academic excellence.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Explore Courses</a></li>
+                    <li><a href="become-a-mentor.html">Become a Mentor</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Newsletter</h4>
+                <p>Stay updated with our latest courses and offers.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email">
+                    <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 StudyBuddy. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Authentication Modal -->
+    <div class="auth-modal-overlay is-hidden" id="auth-modal-overlay">
+        <div class="auth-modal">
+            <button class="close-modal-btn" id="close-auth-modal"><i class="fas fa-times"></i></button>
+            <div class="auth-tabs">
+                <button class="auth-tab-btn active" data-tab="login">Login</button>
+                <button class="auth-tab-btn" data-tab="signup">Sign Up</button>
+            </div>
+
+            <!-- Login Form -->
+            <div class="auth-form active" id="login-tab">
+                <h2>Welcome Back!</h2>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" placeholder="your@example.com" required>
+                        <span class="error-message" id="login-email-error"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <div class="password-input-wrapper">
+                            <input type="password" id="login-password" placeholder="••••••••" required>
+                            <button type="button" class="toggle-password-visibility" data-target="login-password">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <span class="error-message" id="login-password-error"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Login</button>
+                    <div class="social-login-divider"><span>OR</span></div>
+                    <button type="button" class="btn btn-secondary btn-block google-btn" id="google-login-btn">
+                        <i class="fab fa-google"></i> Login with Google
+                    </button>
+                </form>
+            </div>
+
+            <!-- Signup Form -->
+            <div class="auth-form" id="signup-tab">
+                <h2>Join StudyBuddy</h2>
+                <form id="signup-form">
+                    <!-- Step 1: Basic Info -->
+                    <div class="signup-step active" data-step="1">
+                        <div class="form-group">
+                            <label for="signup-name">Full Name</label>
+                            <input type="text" id="signup-name" placeholder="John Doe" required>
+                            <span class="error-message" id="signup-name-error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-email">Email</label>
+                            <input type="email" id="signup-email" placeholder="your@example.com" required>
+                            <span class="error-message" id="signup-email-error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-password">Password</label>
+                            <div class="password-input-wrapper">
+                                <input type="password" id="signup-password" placeholder="••••••••" required>
+                                <button type="button" class="toggle-password-visibility" data-target="signup-password">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="password-strength-meter">
+                                <div class="strength-bar"></div>
+                                <span class="strength-text"></span>
+                            </div>
+                            <ul class="password-criteria">
+                                <li data-criterion="length">8+ characters</li>
+                                <li data-criterion="capital">1 capital letter</li>
+                                <li data-criterion="symbol">1 symbol</li>
+                            </ul>
+                            <span class="error-message" id="signup-password-error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-confirm-password">Confirm Password</label>
+                            <div class="password-input-wrapper">
+                                <input type="password" id="signup-confirm-password" placeholder="••••••••" required>
+                                <button type="button" class="toggle-password-visibility" data-target="signup-confirm-password">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <span class="error-message" id="signup-confirm-password-error"></span>
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="signup-terms" required>
+                            <label for="signup-terms">I agree to the <a href="#">Terms & Conditions</a></label>
+                        </div>
+                        <button type="button" class="btn btn-primary btn-block" id="signup-next-btn">Next</button>
+                    </div>
+
+                    <!-- Step 2: Role Selection (Optional, for future mentor signup) -->
+                    <div class="signup-step" data-step="2">
+                        <div class="form-group">
+                            <label for="signup-username">Choose a Username</label>
+                            <input type="text" id="signup-username" placeholder="e.g., studybuddy_john" required>
+                            <span class="error-message" id="signup-username-error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>I want to sign up as:</label>
+                            <div class="role-selection">
+                                <label class="role-card">
+                                    <input type="radio" name="signup-role" value="student" checked>
+                                    <div class="role-content">
+                                        <i class="fas fa-user-graduate"></i>
+                                        <h4>Student</h4>
+                                        <p>Find mentors and book sessions.</p>
+                                    </div>
+                                </label>
+                                <label class="role-card">
+                                    <input type="radio" name="signup-role" value="mentor">
+                                    <div class="role-content">
+                                        <i class="fas fa-chalkboard-teacher"></i>
+                                        <h4>Mentor</h4>
+                                        <p>Share your knowledge and earn.</p>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" id="signup-back-btn">Back</button>
+                            <button type="submit" class="btn btn-primary">Complete Sign Up</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Success Message -->
+                    <div class="signup-step" data-step="3">
+                        <div class="success-message">
+                            <i class="fas fa-check-circle"></i>
+                            <h3>Account Created!</h3>
+                            <p>Welcome, <strong id="success-username"></strong>! You can now explore courses and connect with mentors.</p>
+                            <button type="button" class="btn btn-primary" id="start-exploring-btn">Start Exploring</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+    <script type="module" src="script.js"></script>
+    <script type="module" src="onboarding.js"></script> <!-- Link to new onboarding JS -->
+</body>
+</html>

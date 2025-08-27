@@ -1,0 +1,354 @@
+/* auth.css */
+
+.auth-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.auth-modal-overlay.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.auth-modal {
+    background-color: var(--surface-color); /* Use variable */
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-xl);
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    box-shadow: var(--shadow-xl); /* Use variable */
+    border: 1px solid var(--border-color); /* Use variable */
+}
+
+.close-modal-btn {
+    position: absolute;
+    top: var(--spacing-md);
+    right: var(--spacing-md);
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--text-secondary-color); /* Use variable */
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-modal-btn:hover {
+    color: var(--error-color); /* Use variable */
+}
+
+.auth-tabs {
+    display: flex;
+    margin-bottom: var(--spacing-xl);
+    border-bottom: 1px solid var(--border-color); /* Use variable */
+}
+
+.auth-tab-btn {
+    flex: 1;
+    padding: var(--spacing-md) 0;
+    background: none;
+    border: none;
+    color: var(--text-secondary-color); /* Use variable */
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.auth-tab-btn:hover {
+    color: var(--primary-color); /* Use variable */
+}
+
+.auth-tab-btn.active {
+    color: var(--primary-color); /* Use variable */
+}
+
+.auth-tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-color); /* Use variable */
+}
+
+.auth-form {
+    display: none;
+}
+
+.auth-form.active {
+    display: block;
+}
+
+.auth-form h2 {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+    color: var(--text-color); /* Use variable */
+    font-size: 2rem;
+}
+
+.password-input-wrapper {
+    position: relative;
+}
+
+.toggle-password-visibility {
+    position: absolute;
+    right: var(--spacing-md);
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--text-secondary-color); /* Use variable */
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.social-login-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: var(--spacing-xl) 0;
+    color: var(--text-secondary-color); /* Use variable */
+}
+
+.social-login-divider::before,
+.social-login-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--border-color); /* Use variable */
+}
+
+.social-login-divider:not(:empty)::before {
+    margin-right: var(--spacing-md);
+}
+
+.social-login-divider:not(:empty)::after {
+    margin-left: var(--spacing-md);
+}
+
+.google-btn {
+    background-color: var(--background-color); /* Use variable */
+    color: var(--text-color); /* Use variable */
+    border: 1px solid var(--border-color); /* Use variable */
+}
+
+.google-btn:hover {
+    background-color: var(--primary-color); /* Use variable */
+    border-color: var(--primary-color); /* Use variable */
+    color: var(--text-color); /* Use variable */
+}
+
+/* Signup Specific Styles */
+.signup-step {
+    display: none;
+}
+
+.signup-step.active {
+    display: block;
+}
+
+.password-strength-meter {
+    background-color: var(--background-color); /* Use variable */
+    border-radius: var(--border-radius-full);
+    height: 8px;
+    margin-top: var(--spacing-sm);
+    overflow: hidden;
+    position: relative;
+}
+
+.strength-bar {
+    height: 100%;
+    width: 0%;
+    background-color: var(--error-color); /* Default weak */
+    border-radius: var(--border-radius-full);
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.strength-text {
+    position: absolute;
+    right: 0;
+    top: -25px;
+    font-size: 0.8rem;
+    color: var(--text-secondary-color); /* Use variable */
+}
+
+.password-criteria {
+    list-style: none;
+    margin-top: var(--spacing-md);
+    font-size: 0.875rem;
+    color: var(--text-secondary-color); /* Use variable */
+}
+
+.password-criteria li {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-xs);
+}
+
+.password-criteria li::before {
+    content: '\f111'; /* Font Awesome circle icon */
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    font-size: 0.7rem;
+    color: var(--text-secondary-color); /* Use variable */
+}
+
+.password-criteria li.met::before {
+    content: '\f00c'; /* Font Awesome check icon */
+    color: var(--success-color); /* Use variable */
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.checkbox-group input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 1px solid var(--border-color); /* Use variable */
+    border-radius: var(--border-radius-sm);
+    background-color: var(--background-color); /* Use variable */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.checkbox-group input[type="checkbox"]:checked {
+    background-color: var(--primary-color); /* Use variable */
+    border-color: var(--primary-color); /* Use variable */
+}
+
+.checkbox-group input[type="checkbox"]:checked::before {
+    content: '\f00c'; /* Font Awesome check icon */
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    font-size: 0.8rem;
+    color: var(--text-color); /* Use variable */
+}
+
+.checkbox-group label {
+    margin-bottom: 0;
+    color: var(--text-secondary-color); /* Use variable */
+}
+
+.role-selection {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+}
+
+.role-card {
+    display: block;
+    background-color: var(--background-color); /* Use variable */
+    border: 1px solid var(--border-color); /* Use variable */
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-md);
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.role-card:hover {
+    border-color: var(--primary-color); /* Use variable */
+    box-shadow: var(--shadow-sm); /* Use variable */
+}
+
+.role-card input[type="radio"] {
+    display: none;
+}
+
+.role-card input[type="radio"]:checked + .role-content {
+    border-color: var(--primary-color); /* Use variable */
+    background-color: rgba(158, 127, 255, 0.1); /* Use variable */
+}
+
+.role-content {
+    padding: var(--spacing-sm);
+    border: 2px solid transparent;
+    border-radius: var(--border-radius-sm);
+    transition: all 0.3s ease;
+}
+
+.role-content i {
+    font-size: 2rem;
+    color: var(--primary-color); /* Use variable */
+    margin-bottom: var(--spacing-sm);
+}
+
+.role-content h4 {
+    color: var(--text-color); /* Use variable */
+    margin-bottom: var(--spacing-xs);
+}
+
+.role-content p {
+    font-size: 0.85rem;
+    color: var(--text-secondary-color); /* Use variable */
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-xl);
+}
+
+.success-message {
+    text-align: center;
+    padding: var(--spacing-xl);
+}
+
+.success-message i {
+    font-size: 4rem;
+    color: var(--success-color); /* Use variable */
+    margin-bottom: var(--spacing-md);
+}
+
+.success-message h3 {
+    color: var(--text-color); /* Use variable */
+    margin-bottom: var(--spacing-sm);
+}
+
+.success-message p {
+    color: var(--text-secondary-color); /* Use variable */
+    margin-bottom: var(--spacing-xl);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .auth-modal {
+        padding: var(--spacing-lg);
+    }
+    .auth-form h2 {
+        font-size: 1.5rem;
+    }
+    .auth-tab-btn {
+        font-size: 1rem;
+    }
+    .role-selection {
+        grid-template-columns: 1fr;
+    }
+    .form-actions {
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Sessions - StudyBuddy</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div id="notification-area" class="notification-area"></div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-book-open book-icon"></i>
+                <span class="logo-text">StudyBuddy</span>
+            </a>
+            <div class="nav-items">
+                <a href="index.html" class="nav-link"><b>Explore</b></a>
+                <a href="#" id="tutor-nav-link" class="nav-link"><b>Tutor</b></a>
+                <a href="pricing.html" class="nav-link"><b>Pricing</b></a>
+                <a href="about.html" class="nav-link"><b>About Us</b></a>
+            </div>
+            <div class="nav-right">
+                <div class="coins-display" id="coinsDisplay">
+                    <i class="fas fa-coins coin-icon"></i>
+                    <span class="coin-balance">0</span>
+                    <div class="coin-popover" id="coin-popover"></div>
+                </div>
+                <button class="join-btn" id="join-btn">Join StudyBuddy</button>
+                
+                <div class="user-dropdown-wrapper" id="user-dropdown-wrapper" style="display: none;">
+                    <button class="btn btn-secondary user-profile-btn" id="user-profile-btn">
+                        <img src="https://via.placeholder.com/32x32" alt="User Avatar" class="user-avatar-small" id="user-avatar-small">
+                        <span id="user-name-display">Hi! User</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="user-dropdown-menu" id="user-dropdown-menu">
+                        <a href="/my-sessions.html" class="dropdown-item" id="my-sessions-link"><i class="fas fa-calendar-alt"></i> My Sessions</a>
+                        <a href="/dashboard.html" class="dropdown-item" id="my-dashboard-link" style="display: none;"><i class="fas fa-tachometer-alt"></i> My Dashboard</a>
+                        <a href="/settings.html" class="dropdown-item" id="settings-link"><i class="fas fa-cog"></i> Settings</a>
+                        <hr>
+                        <button class="dropdown-item logout-btn" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                    </div>
+                </div>
+            </div>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay">
+        <div class="mobile-nav" id="mobileNav">
+            <div class="mobile-nav-header">
+                <a href="index.html" class="logo">StudyBuddy</a>
+                <button class="close-mobile-menu" id="closeMobileMenu">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="mobile-nav-actions">
+                <!-- User pill moved to top -->
+                <div class="user-dropdown-wrapper" id="mobile-user-dropdown-wrapper" style="display: none;">
+                    <button class="btn btn-secondary user-profile-btn" id="mobile-user-profile-btn">
+                        <img src="https://via.placeholder.com/32x32" alt="User Avatar" class="user-avatar-small" id="mobile-user-avatar-small">
+                        <span id="mobile-user-name-display">Hi! User</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="user-dropdown-menu" id="mobile-user-dropdown-menu">
+                        <a href="/my-sessions.html" class="dropdown-item" id="mobile-my-sessions-link"><i class="fas fa-calendar-alt"></i> My Sessions</a>
+                        <a href="/dashboard.html" class="dropdown-item" id="mobile-my-dashboard-link" style="display: none;"><i class="fas fa-tachometer-alt"></i> My Dashboard</a>
+                        <a href="/settings.html" class="dropdown-item" id="mobile-settings-link"><i class="fas fa-cog"></i> Settings</a>
+                        <hr>
+                        <button class="dropdown-item logout-btn" id="mobile-logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                    </div>
+                </div>
+                <div class="coins-display" id="mobileCoinsDisplay">
+                    <i class="fas fa-coins coin-icon"></i>
+                    <span class="coin-balance">0</span>
+                    <div class="coin-popover" id="mobile-coin-popover"></div>
+                </div>
+                <button class="btn btn-secondary" id="mobile-join-btn">Join StudyBuddy</button>
+            </div>
+            <nav class="mobile-nav-items">
+                <a href="index.html" class="mobile-nav-item">Explore</a>
+                <a href="#" id="mobile-tutor-nav-link" class="mobile-nav-item">Tutor</a>
+                <a href="pricing.html" class="mobile-nav-item">Pricing</a>
+                <a href="about.html" class="mobile-nav-item">About Us</a>
+            </nav>
+        </div>
+    </div>
+
+    <main class="dashboard-container">
+        <aside class="sidebar">
+            <div class="profile-summary">
+                <img src="https://via.placeholder.com/80x80" alt="User Avatar" id="sidebar-user-avatar">
+                <h3 id="sidebar-user-name">User Name</h3>
+                <p id="sidebar-user-role">Student</p>
+            </div>
+            <div class="quick-actions">
+                <a href="/my-sessions.html" class="action-btn active"><i class="fas fa-calendar-alt"></i> My Sessions</a>
+                <a href="/settings.html" class="action-btn"><i class="fas fa-cog"></i> Settings</a>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="/dashboard.html" class="nav-link" id="dashboard-link"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                <a href="/dashboard.html?view=courses" class="nav-link" id="manage-courses-link"><i class="fas fa-book"></i> Manage Courses</a>
+                <a href="/dashboard.html?view=messages" class="nav-link" id="messages-link"><i class="fas fa-comments"></i> Messages <span class="badge" id="unread-messages-badge" style="display:none;">0</span></a>
+                <a href="/dashboard.html?view=earnings" class="nav-link" id="earnings-link"><i class="fas fa-dollar-sign"></i> Earnings</a>
+                <a href="/dashboard.html?view=mentor-applications" class="nav-link" id="mentor-applications-link" style="display:none;"><i class="fas fa-user-check"></i> Mentor Applications</a>
+            </nav>
+        </aside>
+
+        <div class="main-content dashboard-main-content">
+            <div class="dashboard-header">
+                <div>
+                    <h1 id="dashboard-title">My Sessions</h1>
+                    <p id="dashboard-subtitle">View your upcoming and past study sessions.</p>
+                </div>
+            </div>
+
+            <div class="dashboard-view active" id="my-sessions-view">
+                <div class="schedule-container" id="upcoming-sessions">
+                    <h3>Upcoming Sessions</h3>
+                    <p class="empty-state-message" id="no-upcoming-sessions">No upcoming sessions. Book one now!</p>
+                </div>
+                <div class="schedule-container" id="past-sessions">
+                    <h3>Past Sessions</h3>
+                    <p class="empty-state-message" id="no-past-sessions">No past sessions.</p>
+                </div>
+
+                <div class="wishlist-container">
+                    <h3>My Wishlist</h3>
+                    <div class="course-grid" id="wishlist-courses-grid">
+                        <!-- Wishlist courses will be loaded here -->
+                        <p class="empty-state-message" id="no-wishlist-courses">No courses in your wishlist yet. Explore and add some!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-col">
+                <h3>StudyBuddy</h3>
+                <p>Your partner in academic excellence.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Explore Courses</a></li>
+                    <li><a href="become-a-mentor.html">Become a Mentor</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Newsletter</h4>
+                <p>Stay updated with our latest courses and offers.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email">
+                    <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 StudyBuddy. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Authentication Modal (re-included for consistency, though not directly used on this page) -->
+    <div class="auth-modal-overlay is-hidden" id="auth-modal-overlay">
+        <div class="auth-modal">
+            <button class="close-modal-btn" id="close-auth-modal"><i class="fas fa-times"></i></button>
+            <div class="auth-tabs">
+                <button class="auth-tab-btn active" data-tab="login">Login</button>
+                <button class="auth-tab-btn" data-tab="signup">Sign Up</button>
+            </div>
+
+            <!-- Login Form -->
+            <div class="auth-form active" id="login-tab">
+                <h2>Welcome Back!</h2>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" placeholder="your@example.com" required>
+                        <span class="error-message" id="login-email-error"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <div class="password-input-wrapper">
+                            <input type="password" id="login-password" placeholder="••••••••" required>
+                            <button type="button" class="toggle-password-visibility" data-target="login-password">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <span class="error-message" id="login-password-error"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Login</button>
+                    <div class="social-login-divider"><span>OR</span></div>
+                    <button type="button" class="btn btn-secondary btn-block google-btn" id="google-login-btn">
+                        <i class="fab fa-google"></i> Login with Google
+                    </button>
+                </form>
+            </div>
+
+            <!-- Signup Form -->
+            <div class="auth-form" id="signup-tab">
+                <h2>Join StudyBuddy</h2>
+                <form id="signup-form">
+                    <!-- Step 1: Basic Info -->
+                    <div class="signup-step active" data-step="1">
+                        <div class="form-group">
+                            <label for="signup-name">Full Name</label>
+                            <input type="text" id="signup-name" placeholder="John Doe" required>
+                            <span class="error-message" id="signup-name-error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-email">Email</label>
+                            <input type="email" id="signup-email" placeholder="your@example.com" required>
+                            <span class="error-message" id="signup-email-error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-password">Password</label>
+                            <div class="password-input-wrapper">
+                                <input type="password" id="signup-password" placeholder="••••••••" required>
+                                <button type="button" class="toggle-password-visibility" data-target="signup-password">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="password-strength-meter">
+                                <div class="strength-bar"></div>
+                                <span class="strength-text"></span>
+                            </div>
+                            <ul class="password-criteria">
+                                <li data-criterion="length">8+ characters</li>
+                                <li data-criterion="capital">1 capital letter</li>
+                                <li data-criterion="symbol">1 symbol</li>
+                            </ul>
+                            <span class="error-message" id="signup-password-error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-confirm-password">Confirm Password</label>
+                            <div class="password-input-wrapper">
+                                <input type="password" id="signup-confirm-password" placeholder="••••••••" required>
+                                <button type="button" class="toggle-password-visibility" data-target="signup-confirm-password">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <span class="error-message" id="signup-confirm-password-error"></span>
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="signup-terms" required>
+                            <label for="signup-terms">I agree to the <a href="#">Terms & Conditions</a></label>
+                        </div>
+                        <button type="button" class="btn btn-primary btn-block" id="signup-next-btn">Next</button>
+                    </div>
+
+                    <!-- Step 2: Role Selection (Optional, for future mentor signup) -->
+                    <div class="signup-step" data-step="2">
+                        <div class="form-group">
+                            <label for="signup-username">Choose a Username</label>
+                            <input type="text" id="signup-username" placeholder="e.g., studybuddy_john" required>
+                            <span class="error-message" id="signup-username-error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>I want to sign up as:</label>
+                            <div class="role-selection">
+                                <label class="role-card">
+                                    <input type="radio" name="signup-role" value="student" checked>
+                                    <div class="role-content">
+                                        <i class="fas fa-user-graduate"></i>
+                                        <h4>Student</h4>
+                                        <p>Find mentors and book sessions.</p>
+                                    </div>
+                                </label>
+                                <label class="role-card">
+                                    <input type="radio" name="signup-role" value="mentor">
+                                    <div class="role-content">
+                                        <i class="fas fa-chalkboard-teacher"></i>
+                                        <h4>Mentor</h4>
+                                        <p>Share your knowledge and earn.</p>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" id="signup-back-btn">Back</button>
+                            <button type="submit" class="btn btn-primary">Complete Sign Up</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Success Message -->
+                    <div class="signup-step" data-step="3">
+                        <div class="success-message">
+                            <i class="fas fa-check-circle"></i>
+                            <h3>Account Created!</h3>
+                            <p>Welcome, <strong id="success-username"></strong>! You can now explore courses and connect with mentors.</p>
+                            <button type="button" class="btn btn-primary" id="start-exploring-btn">Start Exploring</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+    <script type="module" src="mySessions.js"></script>
+</body>
+</html>

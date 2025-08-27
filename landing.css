@@ -1,0 +1,948 @@
+/* landing.css */
+
+/* Removed conflicting body styles, now handled by style.css */
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-color); /* Use variable */
+    margin-bottom: 3rem;
+}
+
+/* Hero Section */
+.hero {
+    padding: 80px 0; /* Adjusted padding for fixed navbar */
+    background: linear-gradient(135deg, var(--background-color) 0%, var(--surface-color) 100%); /* Use variables */
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--text-color); /* Use variable */
+    margin-bottom: 1.5rem;
+    animation: fadeInUp 0.8s ease;
+}
+
+.hero .tagline {
+    font-size: 1.3rem;
+    color: var(--text-secondary-color); /* Use variable */
+    margin-bottom: 2.5rem;
+    animation: fadeInUp 0.8s ease 0.2s both;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    animation: fadeInUp 0.8s ease 0.4s both;
+}
+
+.hero-platform-showcase {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background: linear-gradient(135deg, var(--surface-color), var(--background-color)); /* Use variables */
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-xl); /* Use variable */
+    margin-top: 3rem;
+    overflow: hidden;
+}
+
+.hero-platform-showcase .hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    filter: brightness(0.6); /* Darken image for text readability */
+}
+
+.hero-platform-showcase .showcase-overlay {
+    position: absolute;
+    text-align: center;
+    color: var(--text-color); /* Use variable */
+    z-index: 1;
+}
+
+.hero-platform-showcase .showcase-overlay i {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color); /* Use variable */
+}
+
+.hero-platform-showcase .showcase-overlay h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-color); /* Use variable */
+}
+
+.hero-platform-showcase .showcase-overlay p {
+    font-size: 1.1rem;
+    color: var(--text-secondary-color); /* Use variable */
+}
+
+/* Community Stats */
+.community-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+    margin: 3rem 0;
+    padding: 2rem;
+    background: var(--surface-color); /* Use variable */
+    border-radius: 20px;
+    box-shadow: var(--shadow-lg); /* Use variable */
+    animation: fadeInUp 0.8s ease 0.8s both;
+    border: 1px solid var(--border-color);
+}
+
+.stat-item {
+    text-align: center;
+    padding: 1rem;
+    border-right: 1px solid var(--border-color); /* Use variable */
+}
+
+.stat-item:last-child {
+    border-right: none;
+}
+
+.stat-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color); /* Use variable */
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-color); /* Use variable */
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    color: var(--text-secondary-color); /* Use variable */
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+/* Top Subjects Section */
+.top-subjects {
+    padding: 80px 0;
+    background: var(--background-color); /* Use variable */
+}
+
+.subjects-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.subject-tab {
+    padding: 0.75rem 1.5rem;
+    border: 2px solid var(--border-color); /* Use variable */
+    background: var(--surface-color); /* Use variable */
+    color: var(--text-secondary-color); /* Use variable */
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.subject-tab.active, .subject-tab:hover {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); /* Use variables */
+    color: var(--text-color); /* Use variable */
+    border-color: var(--primary-color); /* Use variable */
+    transform: translateY(-2px);
+}
+
+.subjects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.subject-card {
+    background: var(--surface-color); /* Use variable */
+    border-radius: 15px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    cursor: pointer;
+}
+
+.subject-card:hover {
+    transform: translateY(-5px);
+    background: var(--surface-color); /* Use variable */
+    border-color: var(--primary-color); /* Use variable */
+    box-shadow: var(--shadow-lg); /* Use variable */
+}
+
+.subject-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color); /* Use variable */
+}
+
+.subject-card h3 {
+    color: var(--text-color); /* Use variable */
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+}
+
+.subject-card p {
+    color: var(--text-secondary-color); /* Use variable */
+    margin-bottom: 1rem;
+}
+
+.tutor-count {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); /* Use variables */
+    color: var(--text-color); /* Use variable */
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* Free Tutor CTA Section */
+.free-tutor-cta {
+    padding: 80px 0;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); /* Use variables */
+    color: var(--text-color); /* Use variable */
+    text-align: center;
+}
+
+.free-tutor-cta h2 {
+    color: var(--text-color); /* Use variable */
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.free-tutor-cta p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.cta-white-btn {
+    background: var(--text-color); /* Use variable */
+    color: var(--primary-color); /* Use variable */
+    font-size: 1.2rem;
+    padding: 1.2rem 2.5rem;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+}
+
+.cta-white-btn:hover {
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.4);
+}
+
+/* Instant Connect Section */
+.instant-connect {
+    padding: 80px 0;
+    background: var(--surface-color); /* Use variable */
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.instant-connect h2 {
+    color: var(--error-color); /* Use variable */
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.instant-connect p {
+    font-size: 1.2rem;
+    color: var(--text-secondary-color); /* Use variable */
+    margin-bottom: 2rem;
+}
+
+.instant-btn {
+    background: linear-gradient(135deg, var(--error-color), var(--accent-color)); /* Use variables */
+    color: var(--text-color); /* Use variable */
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.instant-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(239, 68, 68, 0.4); /* Use variable */
+}
+
+/* Top Teachers Section */
+.top-teachers {
+    padding: 80px 0;
+    background: var(--background-color); /* Use variable */
+}
+
+.teachers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.teacher-card {
+    background: var(--surface-color); /* Use variable */
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: var(--shadow-md); /* Use variable */
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color); /* Use variable */
+    text-align: center;
+}
+
+.teacher-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg); /* Use variable */
+}
+
+.teacher-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 1rem;
+    border: 3px solid var(--primary-color); /* Use variable */
+    box-shadow: 0 0 0 5px rgba(158, 127, 255, 0.1); /* Use variable */
+}
+
+.teacher-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.teacher-card h3 {
+    font-size: 1.4rem;
+    color: var(--text-color); /* Use variable */
+    margin-bottom: 0.5rem;
+}
+
+.teacher-card p {
+    color: var(--text-secondary-color); /* Use variable */
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+}
+
+.teacher-rating {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: var(--warning-color); /* Use variable */
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.teacher-rating i {
+    font-size: 1rem;
+}
+
+.teacher-bio {
+    margin-top: 1rem;
+    color: var(--text-secondary-color); /* Use variable */
+    font-size: 0.9rem;
+}
+
+/* Benefits Section */
+.benefits {
+    padding: 80px 0;
+    background: var(--surface-color); /* Use variable */
+    border-top: 1px solid var(--border-color);
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    margin-top: 3rem;
+}
+
+.benefit-card {
+    background: var(--background-color); /* Use variable */
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: var(--shadow-md); /* Use variable */
+    transition: all 0.3s ease;
+    text-align: center;
+    border: 1px solid var(--border-color);
+}
+
+.benefit-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg); /* Use variable */
+}
+
+.benefit-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); /* Use variables */
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-size: 1.8rem;
+    color: var(--text-color); /* Use variable */
+}
+
+.benefit-card h3 {
+    font-size: 1.4rem;
+    color: var(--text-color); /* Use variable */
+    margin-bottom: 0.75rem;
+}
+
+.benefit-card p {
+    color: var(--text-secondary-color); /* Use variable */
+    font-size: 0.95rem;
+}
+
+/* Features Section */
+.features {
+    padding: 80px 0;
+    background: var(--background-color); /* Use variable */
+    border-top: 1px solid var(--border-color);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.feature-card {
+    text-align: center;
+    padding: 2rem;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+    background-color: var(--surface-color);
+}
+
+.feature-card:hover {
+    background: var(--background-color); /* Use variable */
+    transform: translateY(-3px);
+    border-color: var(--primary-color); /* Use variable */
+}
+
+.feature-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color); /* Use variable */
+}
+
+.feature-card h3 {
+    font-size: 1.3rem;
+    color: var(--text-color); /* Use variable */
+    margin-bottom: 0.5rem;
+}
+
+.feature-card p {
+    color: var(--text-secondary-color); /* Use variable */
+    font-size: 0.95rem;
+}
+
+/* Pricing Section */
+.pricing-plans {
+    padding: 80px 0;
+    background: var(--surface-color); /* Use variable */
+    border-top: 1px solid var(--border-color);
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.plan-card {
+    background: var(--background-color); /* Use variable */
+    border-radius: 20px;
+    padding: 1.75rem;
+    box-shadow: var(--shadow-md); /* Use variable */
+    transition: all 0.3s ease;
+    position: relative;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border-color);
+}
+
+.plan-card.featured {
+    transform: scale(1.05);
+    border: 2px solid var(--primary-color); /* Use variable */
+    box-shadow: 0 15px 40px rgba(158, 127, 255, 0.25); /* Use variable */
+}
+
+.popular-badge {
+    position: absolute;
+    top: 1.5rem;
+    right: -45px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); /* Use variables */
+    color: var(--text-color); /* Use variable */
+    padding: 0.5rem 3rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    transform: rotate(45deg);
+    box-shadow: 0 4px 15px rgba(158, 127, 255, 0.3); /* Use variable */
+    white-space: nowrap;
+}
+
+.plan-card h2 {
+    font-size: 1.5rem;
+    color: var(--text-color); /* Use variable */
+    margin-bottom: 0.75rem;
+}
+
+.plan-card .plan-description {
+    color: var(--text-secondary-color); /* Use variable */
+    font-size: 0.85rem;
+    min-height: 30px;
+}
+
+.plan-card .plan-price {
+    margin: 1rem 0;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color); /* Use variable */
+}
+
+.plan-card .price-amount {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-color); /* Use variable */
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.plan-card .price-amount .fa-coins {
+    color: var(--warning-color); /* Use variable */
+}
+
+.plan-card .price-currency {
+    font-size: 0.9rem;
+    color: var(--text-secondary-color); /* Use variable */
+    font-weight: 500;
+    margin-top: 0.25rem;
+}
+
+.plan-features {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1.5rem;
+    text-align: left;
+    flex-grow: 1;
+}
+
+.plan-features li {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary-color); /* Use variable */
+    font-size: 0.9rem;
+}
+
+.plan-features li i {
+    color: var(--success-color); /* Use variable */
+    font-size: 1rem;
+}
+
+.plan-features li.unavailable {
+    color: var(--text-secondary-color);
+    opacity: 0.6;
+    text-decoration: line-through;
+}
+
+.plan-features li.unavailable i {
+    color: var(--error-color); /* Use variable */
+}
+
+.plan-card .buy-btn {
+    width: 100%;
+    padding: 0.8rem 1.5rem;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid var(--primary-color); /* Use variable */
+    background: var(--background-color); /* Use variable */
+    color: var(--primary-color); /* Use variable */
+}
+
+.plan-card .buy-btn:hover {
+    background: var(--primary-color); /* Use variable */
+    color: var(--text-color); /* Use variable */
+}
+
+.plan-card .buy-btn.primary {
+    background: var(--primary-color); /* Use variable */
+    color: var(--text-color); /* Use variable */
+}
+
+.plan-card .buy-btn.primary:hover {
+    background: var(--secondary-color); /* Use variable */
+    border-color: var(--secondary-color); /* Use variable */
+}
+
+.payment-info {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color); /* Use variable */
+    color: var(--text-secondary-color); /* Use variable */
+}
+
+.payment-methods {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.payment-methods span {
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.payment-methods img {
+    height: 25px;
+    width: auto;
+    filter: grayscale(100%) brightness(180%); /* Adjust for dark theme */
+    transition: filter 0.3s ease;
+}
+
+.payment-methods img:hover {
+    filter: grayscale(0%) brightness(100%);
+}
+
+.guarantee-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-weight: 500;
+    color: var(--text-secondary-color); /* Use variable */
+}
+
+.guarantee-badge i {
+    color: var(--success-color); /* Use variable */
+    font-size: 1.1rem;
+}
+
+/* FAQ Section */
+.faq {
+    padding: 80px 0;
+    background: var(--background-color); /* Use variable */
+    border-top: 1px solid var(--border-color);
+}
+
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background: var(--surface-color); /* Use variable */
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color); /* Use variable */
+}
+
+.faq-question {
+    padding: 1.5rem;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-color); /* Use variable */
+    font-size: 1.1rem;
+}
+
+.faq-question i {
+    transition: transform 0.3s ease;
+    color: var(--primary-color); /* Use variable */
+}
+
+.faq-question.active i {
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    padding: 0 1.5rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+    color: var(--text-secondary-color); /* Use variable */
+    line-height: 1.6;
+}
+
+.faq-answer.active {
+    max-height: 200px; /* Adjust based on expected content height */
+    padding: 0 1.5rem 1.5rem;
+}
+
+/* Contact Section */
+.contact {
+    padding: 80px 0;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); /* Use variables */
+    color: var(--text-color); /* Use variable */
+    text-align: center;
+}
+
+.contact h2 {
+    color: var(--text-color); /* Use variable */
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+}
+
+.contact p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.contact-form {
+    max-width: 600px;
+    margin: 2rem auto 0;
+    display: grid;
+    gap: 1rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 1rem;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    background: var(--surface-color); /* Use variable */
+    color: var(--text-color); /* Use variable */
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: var(--text-secondary-color); /* Use variable */
+}
+
+.contact-form .cta-btn {
+    width: 100%;
+    margin-top: 1rem;
+    background: var(--text-color); /* Use variable */
+    color: var(--primary-color); /* Use variable */
+}
+
+.contact-form .cta-btn:hover {
+    background: var(--text-secondary-color); /* Use variable */
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.4);
+}
+
+.contact-info {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.contact-info span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.contact-info i {
+    color: var(--warning-color); /* Accent color for icons */
+}
+
+/* Footer (Landing Page Specific) */
+.footer {
+    background: var(--surface-color); /* Use variable */
+    color: var(--text-secondary-color); /* Use variable */
+    padding: 2rem 0;
+    text-align: center;
+    font-size: 0.9rem;
+    border-top: 1px solid var(--border-color);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile Responsive */
+@media (max-width: 1024px) {
+    .hero h1 {
+        font-size: 3rem;
+    }
+    .hero .tagline {
+        font-size: 1.2rem;
+    }
+    .hero-platform-showcase {
+        height: 300px;
+    }
+    .hero-platform-showcase .showcase-overlay h3 {
+        font-size: 1.5rem;
+    }
+    .hero-platform-showcase .showcase-overlay p {
+        font-size: 1rem;
+    }
+    .section-title {
+        font-size: 2rem;
+    }
+    .community-stats {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        padding: 1.5rem;
+    }
+    .stat-number {
+        font-size: 1.8rem;
+    }
+    .stat-label {
+        font-size: 0.85rem;
+    }
+    .plan-card.featured {
+        transform: none; /* Remove scale on smaller screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding: 60px 0;
+    }
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    .hero .tagline {
+        font-size: 1rem;
+    }
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    .hero-platform-showcase {
+        height: 250px;
+    }
+    .hero-platform-showcase .showcase-overlay i {
+        font-size: 3rem;
+    }
+    .hero-platform-showcase .showcase-overlay h3 {
+        font-size: 1.3rem;
+    }
+    .community-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+    .stat-item {
+        border-right: none; /* Remove vertical dividers on small screens */
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 1rem;
+    }
+    .stat-item:nth-child(2n) {
+        border-right: none;
+    }
+    .stat-item:nth-last-child(-n+2) {
+        border-bottom: none;
+    }
+    .subjects-tabs {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .subject-tab {
+        width: 100%;
+        max-width: 300px;
+    }
+    .subjects-grid, .teachers-grid, .benefits-grid, .features-grid, .pricing-grid {
+        grid-template-columns: 1fr;
+    }
+    .free-tutor-cta h2, .instant-connect h2 {
+        font-size: 2rem;
+    }
+    .contact-info {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+    .hero .tagline {
+        font-size: 0.9rem;
+    }
+    .btn-primary, .btn-secondary, .cta-btn, .instant-btn, .cta-white-btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+    .hero-platform-showcase {
+        height: 200px;
+    }
+    .hero-platform-showcase .showcase-overlay i {
+        font-size: 2.5rem;
+    }
+    .hero-platform-showcase .showcase-overlay h3 {
+        font-size: 1.2rem;
+    }
+    .section-title {
+        font-size: 1.8rem;
+    }
+    .community-stats {
+        padding: 1rem;
+    }
+    .stat-number {
+        font-size: 1.5rem;
+    }
+    .stat-icon {
+        font-size: 2rem;
+    }
+    .subject-card, .teacher-card, .benefit-card, .feature-card, .plan-card, .faq-item {
+        padding: 1.5rem;
+    }
+    .faq-question {
+        font-size: 1rem;
+        padding: 1rem;
+    }
+    .faq-answer {
+        padding: 0 1rem 1rem;
+    }
+    .contact h2 {
+        font-size: 2rem;
+    }
+    .contact-form {
+        padding: 0 10px;
+    }
+}

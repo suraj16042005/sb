@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyBuddy - Learn from Peers, Earn from Teaching</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="auth.css">
+    <link rel="stylesheet" href="landing.css">
+    <link rel="stylesheet" href="pricing.css"> <!-- Ensure pricing.css is linked for the new pricing section -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div id="notification-area" class="notification-area"></div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-book-open book-icon"></i>
+                <span class="logo-text">StudyBuddy</span>
+            </a>
+            <div class="nav-items">
+                <a href="index.html" class="nav-link"><b>Explore</b></a>
+                <a href="#" id="tutor-nav-link" class="nav-link"><b>Tutor</b></a>
+                <a href="pricing.html" class="nav-link"><b>Pricing</b></a>
+                <a href="about.html" class="nav-link"><b>About Us</b></a>
+            </div>
+            <div class="nav-right">
+                <div class="coins-display" id="coinsDisplay">
+                    <i class="fas fa-coins coin-icon"></i>
+                    <span class="coin-balance">0</span>
+                    <div class="coin-popover" id="coin-popover"></div>
+                </div>
+                <button class="join-btn" id="join-btn">Join StudyBuddy</button>
+                
+                <div class="user-dropdown-wrapper" id="user-dropdown-wrapper" style="display: none;">
+                    <button class="btn btn-secondary user-profile-btn" id="user-profile-btn">
+                        <img src="https://via.placeholder.com/32x32" alt="User Avatar" class="user-avatar-small" id="user-avatar-small">
+                        <span id="user-name-display">Hi! User</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="user-dropdown-menu" id="user-dropdown-menu">
+                        <a href="/my-sessions.html" class="dropdown-item" id="my-sessions-link"><i class="fas fa-calendar-alt"></i> My Sessions</a>
+                        <a href="/dashboard.html" class="dropdown-item" id="my-dashboard-link" style="display: none;"><i class="fas fa-tachometer-alt"></i> My Dashboard</a>
+                        <a href="/settings.html" class="dropdown-item" id="settings-link"><i class="fas fa-cog"></i> Settings</a>
+                        <hr>
+                        <button class="dropdown-item logout-btn" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                    </div>
+                </div>
+            </div>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay">
+        <div class="mobile-nav" id="mobileNav">
+            <div class="mobile-nav-header">
+                <a href="index.html" class="logo">StudyBuddy</a>
+                <button class="close-mobile-menu" id="closeMobileMenu">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="mobile-nav-actions">
+                <!-- User pill moved to top -->
+                <div class="user-dropdown-wrapper" id="mobile-user-dropdown-wrapper" style="display: none;">
+                    <button class="btn btn-secondary user-profile-btn" id="mobile-user-profile-btn">
+                        <img src="https://via.placeholder.com/32x32" alt="User Avatar" class="user-avatar-small" id="mobile-user-avatar-small">
+                        <span id="mobile-user-name-display">Hi! User</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="user-dropdown-menu" id="mobile-user-dropdown-menu">
+                        <a href="/my-sessions.html" class="dropdown-item" id="mobile-my-sessions-link"><i class="fas fa-calendar-alt"></i> My Sessions</a>
+                        <a href="/dashboard.html" class="dropdown-item" id="mobile-my-dashboard-link" style="display: none;"><i class="fas fa-tachometer-alt"></i> My Dashboard</a>
+                        <a href="/settings.html" class="dropdown-item" id="mobile-settings-link"><i class="fas fa-cog"></i> Settings</a>
+                        <hr>
+                        <button class="dropdown-item logout-btn" id="mobile-logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                    </div>
+                </div>
+                <div class="coins-display" id="mobileCoinsDisplay">
+                    <i class="fas fa-coins coin-icon"></i>
+                    <span class="coin-balance">0</span>
+                    <div class="coin-popover" id="mobile-coin-popover"></div>
+                </div>
+                <button class="btn btn-secondary" id="mobile-join-btn">Join StudyBuddy</button>
+            </div>
+            <nav class="mobile-nav-items">
+                <a href="index.html" class="mobile-nav-item">Explore</a>
+                <a href="#" id="mobile-tutor-nav-link" class="mobile-nav-item">Tutor</a>
+                <a href="pricing.html" class="mobile-nav-item">Pricing</a>
+                <a href="about.html" class="mobile-nav-item">About Us</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>Unlock Your Potential with Expert Mentors</h1>
+                <p class="tagline">Find personalized 1-on-1 and group sessions in any subject.</p>
+                <div class="hero-buttons">
+                    <a href="index.html" class="btn-primary">Enroll Now</a>
+                    <a href="become-a-mentor.html" class="btn-secondary">Be a Mentor</a>
+                </div>
+                
+                <!-- Community Stats -->
+                <div class="community-stats">
+                    <div class="stat-item">
+                        <div class="stat-icon"><i class="fas fa-user-graduate"></i></div>
+                        <div class="stat-number">3,000+</div>
+                        <div class="stat-label">Learners</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                        <div class="stat-number">700+</div>
+                        <div class="stat-label">Tutors available</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon"><i class="fas fa-book"></i></div>
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Expertise Subjects</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon"><i class="fas fa-rupee-sign"></i></div>
+                        <div class="stat-number">₹899</div>
+                        <div class="stat-label">Average session price</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon"><i class="fas fa-calendar-check"></i></div>
+                        <div class="stat-number">600+</div>
+                        <div class="stat-label">Scheduled sessions</div>
+                    </div>
+                </div>
+                
+                <div class="hero-platform-showcase">
+                    <img src="https://images.pexels.com/photos/3769021/pexels-photo-3769021.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Interactive Learning Platform" class="hero-image">
+                    <div class="showcase-overlay">
+                        <i class="fas fa-video"></i>
+                        <h3>Interactive Learning Platform</h3>
+                        <p>Live video sessions, chat, whiteboard, and more</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Top Subjects Section -->
+        <section class="top-subjects">
+            <div class="container">
+                <h2 class="section-title">Top Subjects</h2>
+                <div class="subjects-tabs">
+                    <button class="subject-tab active" data-category="all">All Subjects</button>
+                    <button class="subject-tab" data-category="engineering">Engineering</button>
+                    <button class="subject-tab" data-category="science">Science</button>
+                    <button class="subject-tab" data-category="mathematics">Mathematics</button>
+                    <button class="subject-tab" data-category="programming">Programming</button>
+                </div>
+                <div class="subjects-grid">
+                    <div class="subject-card" data-category="programming">
+                        <div class="subject-icon"><i class="fas fa-laptop-code"></i></div>
+                        <h3>Computer Science</h3>
+                        <p>Data Structures, Algorithms, OOP</p>
+                        <span class="tutor-count">150+ tutors</span>
+                    </div>
+                    <div class="subject-card" data-category="mathematics">
+                        <div class="subject-icon"><i class="fas fa-calculator"></i></div>
+                        <h3>Mathematics</h3>
+                        <p>Calculus, Algebra, Statistics</p>
+                        <span class="tutor-count">200+ tutors</span>
+                    </div>
+                    <div class="subject-card" data-category="science">
+                        <div class="subject-icon"><i class="fas fa-atom"></i></div>
+                        <h3>Physics</h3>
+                        <p>Mechanics, Thermodynamics, Quantum</p>
+                        <span class="tutor-count">120+ tutors</span>
+                    </div>
+                    <div class="subject-card" data-category="science">
+                        <div class="subject-icon"><i class="fas fa-flask"></i></div>
+                        <h3>Chemistry</h3>
+                        <p>Organic, Inorganic, Physical</p>
+                        <span class="tutor-count">100+ tutors</span>
+                    </div>
+                    <div class="subject-card" data-category="engineering">
+                        <div class="subject-icon"><i class="fas fa-cogs"></i></div>
+                        <h3>Mechanical Engineering</h3>
+                        <p>Thermodynamics, Mechanics, Design</p>
+                        <span class="tutor-count">80+ tutors</span>
+                    </div>
+                    <div class="subject-card" data-category="engineering">
+                        <div class="subject-icon"><i class="fas fa-bolt"></i></div>
+                        <h3>Electrical Engineering</h3>
+                        <p>Circuits, Electronics, Power Systems</p>
+                        <span class="tutor-count">90+ tutors</span>
+                    </div>
+                    <div class="subject-card" data-category="programming">
+                        <div class="subject-icon"><i class="fab fa-python"></i></div>
+                        <h3>Python Programming</h3>
+                        <p>Django, Flask, Data Science</p>
+                        <span class="tutor-count">180+ tutors</span>
+                    </div>
+                    <div class="subject-card" data-category="programming">
+                        <div class="subject-icon"><i class="fab fa-java"></i></div>
+                        <h3>Java Programming</h3>
+                        <p>Spring, Hibernate, Android</p>
+                        <span class="tutor-count">140+ tutors</span>
+                    </div>
+										<div class="subject-card" data-category="programming">
+                        <div class="subject-icon"><i class="fab fa-html5"></i></div>
+                        <h3>Html/Css Programming</h3>
+                        <p>React, Tailwind, Webdev</p>
+                        <span class="tutor-count">200+ tutors</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Top Teachers Section -->
+        <section class="top-teachers">
+            <div class="container">
+                <h2 class="section-title">Top Rated Teachers</h2>
+                <div class="teachers-grid">
+                    <div class="teacher-card">
+                        <div class="teacher-avatar">
+                            <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Arjun Patel">
+                        </div>
+                        <h3>Arjun Patel</h3>
+                        <p>Computer Science • IIT Delhi</p>
+                        <div class="teacher-rating">
+                            <span><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></span>
+                            <span>4.9 (500+ reviews)</span>
+                        </div>
+                        <p class="teacher-bio">Specializes in Data Structures, Algorithms, and Machine Learning</p>
+                    </div>
+                    <div class="teacher-card">
+                        <div class="teacher-avatar">
+                            <img src="https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Priya Sharma">
+                        </div>
+                        <h3>Priya Sharma</h3>
+                        <p>Mathematics • IIT Bombay</p>
+                        <div class="teacher-rating">
+                            <span><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></span>
+                            <span>4.8 (380+ reviews)</span>
+                        </div>
+                        <p class="teacher-bio">Expert in Calculus, Linear Algebra, and Statistics</p>
+                    </div>
+                    <div class="teacher-card">
+                        <div class="teacher-avatar">
+                            <img src="https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Rahul Kumar">
+                        </div>
+                        <h3>Rahul Kumar</h3>
+                        <p>Physics • BITS Pilani</p>
+                        <div class="teacher-rating">
+                            <span><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></span>
+                            <span>4.9 (420+ reviews)</span>
+                        </div>
+                        <p class="teacher-bio">Quantum Mechanics, Thermodynamics, and Modern Physics</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Free Tutor CTA Section -->
+        <section class="free-tutor-cta">
+            <div class="container">
+                <h2>Join now and schedule a free tutor! <i class="fas fa-graduation-cap"></i></h2>
+                <p>Sign up now, complete your profile and connect with a tutor for free</p>
+                <a href="#" class="btn-primary cta-white-btn">Start Your Free Session</a>
+            </div>
+        </section>
+
+        <!-- Instant Connect Section -->
+        <section class="instant-connect">
+            <div class="container">
+                <h2>Urgent question? Connect with a Tutor <i class="fas fa-rocket"></i> instantly!</h2>
+                <p>Instant Sessions allow you to connect with an expert Tutor within minutes!</p>
+                <a href="#" class="instant-btn">
+                    <i class="fas fa-bolt"></i>
+                    Connect Instantly
+                </a>
+            </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section class="benefits" id="about">
+            <div class="container">
+                <h2 class="section-title">Why Choose StudyBuddy?</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon"><i class="fas fa-user-graduate"></i></div>
+                        <h3>Learn from Experienced Peers</h3>
+                        <p>Connect with senior students who have already mastered the subjects you're struggling with. Get insights from those who understand your journey.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon"><i class="fas fa-coins"></i></div>
+                        <h3>Earn While You Teach</h3>
+                        <p>Senior students can monetize their knowledge by teaching juniors. Set your own rates and build a sustainable income stream.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon"><i class="fas fa-handshake"></i></div>
+                        <h3>Peer-to-Peer Connection</h3>
+                        <p>Experience genuine mentorship. Our platform fosters meaningful relationships between students across different academic levels.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features" id="features">
+            <div class="container">
+                <h2 class="section-title">Features Loved by Everyone</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-video"></i></div>
+                        <h3>Live Video Sessions</h3>
+                        <p>High-quality video calls with screen sharing and interactive whiteboards</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-calendar-alt"></i></div>
+                        <h3>Smart Scheduling</h3>
+                        <p>Easy-to-use calendar integration for seamless session planning</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-comments"></i></div>
+                        <h3>24/7 Chat Support</h3>
+                        <p>Instant messaging for quick doubts and continuous learning support</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-star"></i></div>
+                        <h3>Rating System</h3>
+                        <p>Transparent review system to help you find the best teachers</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section (Updated to match pricing.html) -->
+        <section class="pricing-plans">
+            <div class="container pricing-grid">
+                <div class="plan-card">
+                    <h2>Stater</h2>
+                    <p class="plan-price">
+                        <span class="price-amount">1000 <i class="fas fa-coins"></i></span>
+                        <span class="price-currency">for ₹899</span>
+                    </p>
+                    <p class="plan-description">Perfect for trying out StudyBuddy.</p>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check-circle"></i> 10% Bonus Coins</li>
+                        <li><i class="fas fa-check-circle"></i> Access to all free courses</li>
+                        <li><i class="fas fa-check-circle"></i> 1-on-1 sessions (pay per session)</li>
+                        <li><i class="fas fa-check-circle"></i> Basic support</li>
+                        <li class="unavailable"><i class="fas fa-times-circle"></i> Group session discounts</li>
+                        <li class="unavailable"><i class="fas fa-times-circle"></i> Priority support</li>
+                        <li class="unavailable"><i class="fas fa-times-circle"></i> Subscription based</li>
+                    </ul>
+                    <button class="btn btn-primary buy-btn">Get Started</button>
+                </div>
+
+                <div class="plan-card featured">
+                    <span class="popular-badge">Best Value</span>
+                    <h2>Premium</h2>
+                    <p class="plan-price">
+                        <span class="price-amount">2500 <i class="fas fa-coins"></i></span>
+                        <span class="price-currency">for ₹1499</span>
+                    </p>
+                    <p class="plan-description">For serious learners who want more.</p>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check-circle"></i> 25% Bonus Coins</li>
+                        <li><i class="fas fa-check-circle"></i> All Stater features</li>
+                        <li><i class="fas fa-check-circle"></i> 10% discount on 1-on-1 sessions</li>
+                        <li><i class="fas fa-check-circle"></i> 20% discount on group sessions</li>
+                        <li><i class="fas fa-check-circle"></i> Priority support</li>
+                        <li><i class="fas fa-check-circle"></i> Subscription based</li>
+                        <li class="unavailable"><i class="fas fa-times-circle"></i> Dedicated mentor</li>
+                    </ul>
+                    <button class="btn btn-primary buy-btn primary">Choose Plan</button>
+                </div>
+
+                <div class="plan-card">
+                    <h2>Bulk</h2>
+                    <p class="plan-price">
+                        <span class="price-amount">5000 <i class="fas fa-coins"></i></span>
+                        <span class="price-currency">for ₹3499</span>
+                    </p>
+                    <p class="plan-description">Unlock the ultimate learning experience.</p>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check-circle"></i> 30% Bonus Coins</li>
+                        <li><i class="fas fa-check-circle"></i> All Premium features</li>
+                        <li><i class="fas fa-check-circle"></i> 20% discount on 1-on-1 sessions</li>
+                        <li><i class="fas fa-check-circle"></i> 30% discount on group sessions</li>
+                        <li><i class="fas fa-check-circle"></i> Dedicated mentor access</li>
+                        <li><i class="fas fa-check-circle"></i> Exclusive workshops</li>
+                        <li><i class="fas fa-check-circle"></i> Subscription based</li>
+                    </ul>
+                    <button class="btn btn-primary buy-btn">Go Elite</button>
+                </div>
+            </div>
+            <div class="payment-info">
+                <div class="payment-methods">
+                    <span>Secure Payments via:</span>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/UPI-Logo-vector.svg" alt="UPI" title="UPI">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/800px-Mastercard-logo.svg.png" alt="Cards" title="Cards">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Visa_Inc._logo.svg/2560px-Visa_Inc._logo.svg.png" alt="Cards" title="Cards">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Indian_Bank_logo.svg/1200px-Indian_Bank_logo.svg.png" alt="Net Banking" title="Net Banking">
+                </div>
+                <div class="guarantee-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>30-Day Money-Back Guarantee</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq">
+            <div class="container">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>How does StudyBuddy ensure teacher quality?</span>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>All teachers undergo a verification process including academic credentials check and a demo session. We also have a robust rating and review system to maintain quality.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What subjects are available on the platform?</span>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We cover all major subjects including Mathematics, Physics, Chemistry, Computer Science, Engineering subjects, and many more. New subjects are added regularly based on demand.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>How do payments work for teachers?</span>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Teachers receive 85% of the session fee directly in their account. Payments are processed weekly and can be withdrawn instantly to your bank account or digital wallet.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Is there a free trial available?</span>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes! New students get a 7-day free trial with access to 3 free sessions. No credit card required to start your trial.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact" id="contact">
+            <div class="container">
+                <h2>Have Questions? We're Here to Help!</h2>
+                <p>Get in touch with our team for any queries or support</p>
+                <form class="contact-form">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <textarea rows="4" placeholder="Your Message" required></textarea>
+                    <button type="submit" class="cta-btn">Send Message</button>
+                </form>
+                <div class="contact-info">
+                    <span><i class="fas fa-envelope"></i> support@studybuddy.com</span>
+                    <span><i class="fas fa-phone-alt"></i> +91 8888-888-888</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2025 StudyBuddy. All rights reserved. | Empowering peer-to-peer learning across India.</p>
+        </div>
+    </footer>
+
+    <!-- Authentication Modal -->
+    <div class="auth-modal-overlay is-hidden" id="auth-modal-overlay">
+        <div class="auth-modal">
+            <button class="close-modal-btn" id="close-auth-modal"><i class="fas fa-times"></i></button>
+            <div class="auth-tabs">
+                <button class="auth-tab-btn active" data-tab="login">Login</button>
+                <button class="auth-tab-btn" data-tab="signup">Sign Up</button>
+            </div>
+
+            <!-- Login Form -->
+            <div class="auth-form active" id="login-tab">
+                <h2>Welcome Back!</h2>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" placeholder="your@example.com" required>
+                        <span class="error-message" id="login-email-error"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <div class="password-input-wrapper">
+                            <input type="password" id="login-password" placeholder="••••••••" required>
+                            <button type="button" class="toggle-password-visibility" data-target="login-password">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <span class="error-message" id="login-password-error"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Login</button>
+                    <div class="social-login-divider"><span>OR</span></div>
+                    <button type="button" class="btn btn-secondary btn-block google-btn" id="google-login-btn">
+                        <i class="fab fa-google"></i> Login with Google
+                    </button>
+                </form>
+            </div>
+
+            <!-- Signup Form -->
+            <div class="auth-form" id="signup-tab">
+                <h2>Join StudyBuddy</h2>
+                <form id="signup-form">
+                    <!-- Step 1: Basic Info -->
+                    <div class="signup-step active" data-step="1">
+                        <div class="form-group">
+                            <label for="signup-name">Full Name</label>
+                            <input type="text" id="signup-name" placeholder="John Doe" required>
+                            <span class="error-message" id="signup-name-error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-email">Email</label>
+                            <input type="email" id="signup-email" placeholder="your@example.com" required>
+                            <span class="error-message" id="signup-email-error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-password">Password</label>
+                            <div class="password-input-wrapper">
+                                <input type="password" id="signup-password" placeholder="••••••••" required>
+                                <button type="button" class="toggle-password-visibility" data-target="signup-password">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="password-strength-meter">
+                                <div class="strength-bar"></div>
+                                <span class="strength-text"></span>
+                            </div>
+                            <ul class="password-criteria">
+                                <li data-criterion="length">8+ characters</li>
+                                <li data-criterion="capital">1 capital letter</li>
+                                <li data-criterion="symbol">1 symbol</li>
+                            </ul>
+                            <span class="error-message" id="signup-password-error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-confirm-password">Confirm Password</label>
+                            <div class="password-input-wrapper">
+                                <input type="password" id="signup-confirm-password" placeholder="••••••••" required>
+                                <button type="button" class="toggle-password-visibility" data-target="signup-confirm-password">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <span class="error-message" id="signup-confirm-password-error"></span>
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="signup-terms" required>
+                            <label for="signup-terms">I agree to the <a href="#">Terms & Conditions</a></label>
+                        </div>
+                        <button type="button" class="btn btn-primary btn-block" id="signup-next-btn">Next</button>
+                    </div>
+
+                    <!-- Step 2: Role Selection (Optional, for future mentor signup) -->
+                    <div class="signup-step" data-step="2">
+                        <div class="form-group">
+                            <label for="signup-username">Choose a Username</label>
+                            <input type="text" id="signup-username" placeholder="e.g., studybuddy_john" required>
+                            <span class="error-message" id="signup-username-error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>I want to sign up as:</label>
+                            <div class="role-selection">
+                                <label class="role-card">
+                                    <input type="radio" name="signup-role" value="student" checked>
+                                    <div class="role-content">
+                                        <i class="fas fa-user-graduate"></i>
+                                        <h4>Student</h4>
+                                        <p>Find mentors and book sessions.</p>
+                                    </div>
+                                </label>
+                                <label class="role-card">
+                                    <input type="radio" name="signup-role" value="mentor">
+                                    <div class="role-content">
+                                        <i class="fas fa-chalkboard-teacher"></i>
+                                        <h4>Mentor</h4>
+                                        <p>Share your knowledge and earn.</p>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" id="signup-back-btn">Back</button>
+                            <button type="submit" class="btn btn-primary">Complete Sign Up</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Success Message -->
+                    <div class="signup-step" data-step="3">
+                        <div class="success-message">
+                            <i class="fas fa-check-circle"></i>
+                            <h3>Account Created!</h3>
+                            <p>Welcome, <strong id="success-username"></strong>! You can now explore courses and connect with mentors.</p>
+                            <button type="button" class="btn btn-primary" id="start-exploring-btn">Start Exploring</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>

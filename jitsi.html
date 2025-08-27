@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyBuddy - Video Call</title>
+    <link rel="stylesheet" href="jitsi.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Jitsi Meet External API script -->
+    <script src="https://meet.jit.si/external_api.js"></script>
+</head>
+<body>
+    <div id="app-root"> <!-- Added a generic root div -->
+        <div class="jitsi-wrapper">
+            <button class="jitsi-close-btn" id="jitsi-close-btn" title="Leave Call">
+                <i class="fas fa-times"></i>
+            </button>
+            <div id="jitsi-container">
+                <!-- Jitsi iframe will be embedded here by jitsi.js -->
+                <div class="jitsi-loading-message">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Loading video call...</p>
+                </div>
+                <div class="jitsi-error-message" style="display: none;">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>Failed to load video call</h3>
+                    <p>Please ensure your internet connection is stable and try again. If the issue persists, the Jitsi server might be temporarily unavailable.</p>
+                    <button class="btn btn-primary" onclick="window.location.href='index.html'">Go Back to Home</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="jitsi.js"></script>
+</body>
+</html>
