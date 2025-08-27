@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!jitsiContainer) {
         console.error('Jitsi container not found. Cannot initialize Jitsi.');
-        // Display a more prominent error if the container itself is missing
         const appRoot = document.getElementById('app-root');
         if (appRoot) {
             appRoot.innerHTML = `
@@ -26,8 +25,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (errorMessage) errorMessage.style.display = 'none';
 
     const domain = 'meet.jit.si';
+    const roomName = 'StudyBuddy-room1'; // Define roomName separately for clarity
     const options = {
-        roomName: 'StudyBuddy-room1',
+        roomName: roomName,
         width: '100%', // Use 100% to fill the parent container
         height: '100%', // Use 100% to fill the parent container
         parentNode: jitsiContainer,
@@ -58,10 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // CRITICAL: The code already uses JitsiMeetExternalAPI as suggested.
-    // The "refused to connect" error often indicates issues with the container's dimensions
-    // or network/browser security, rather than the API initialization method itself.
-    // We are ensuring the container has proper dimensions via CSS.
     if (typeof JitsiMeetExternalAPI === 'undefined') {
         console.error('JitsiMeetExternalAPI script not loaded. Cannot initialize Jitsi.');
         if (loadingMessage) loadingMessage.style.display = 'none';
@@ -69,15 +65,52 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
+    let api;
+    const JITSI_LOAD_TIMEOUT = 15000; // 15 seconds timeout
+
+    // Set a timeout for the Jitsi call to load
+    const loadingTimeout = setTimeout(() => {
+        if (loadingMessage && loadingMessage.style.display !== 'none') {
+            console.warn('Jitsi video call took too long to load. Displaying error message.');
+            if (loadingMessage) loadingMessage.style.display = 'none';
+            if (errorMessage) {
+                errorMessage.style.display = 'flex';
+                const errorDetails = errorMessage.querySelector('p');
+                if (errorDetails) {
+                    errorDetails.textContent = `The video call took too long to load. This might be due to a slow connection or Jitsi server issues. Please try again.`;
+                }
+            }
+            if (api) {
+                api.dispose(); // Attempt to clean up if API was initialized
+            }
+        }
+    }, JITSI_LOAD_TIMEOUT);
+
     try {
-        console.log('Attempting to initialize JitsiMeetExternalAPI with options:', options);
-        const api = new JitsiMeetExternalAPI(domain, options);
-        console.log('JitsiMeetExternalAPI initialized:', api);
+        console.log(`Attempting to initialize JitsiMeetExternalAPI for room: ${roomName} on domain: ${domain}`);
+        api = new JitsiMeetExternalAPI(domain, options);
+        console.log('JitsiMeetExternalAPI initialized successfully.');
 
         api.addEventListener('videoConferenceJoined', () => {
+            clearTimeout(loadingTimeout); // Clear timeout if joined successfully
             console.log('Jitsi video conference joined!');
             if (loadingMessage) loadingMessage.style.display = 'none';
             if (errorMessage) errorMessage.style.display = 'none';
+        });
+
+        // Add an error listener for Jitsi API internal errors
+        api.addEventListener('error', (error) => {
+            clearTimeout(loadingTimeout);
+            console.error('Jitsi API Error:', error);
+            if (loadingMessage) loadingMessage.style.display = 'none';
+            if (errorMessage) {
+                errorMessage.style.display = 'flex';
+                const errorDetails = errorMessage.querySelector('p');
+                if (errorDetails) {
+                    errorDetails.textContent = `A Jitsi error occurred: ${error.message || JSON.stringify(error)}. Please try again.`;
+                }
+            }
+            if (api) api.dispose();
         });
 
         api.addEventListener('readyToClose', () => {
@@ -94,13 +127,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
         customCloseBtn?.addEventListener('click', () => {
             console.log('Custom close button clicked. Disposing Jitsi API.');
-            api.dispose();
+            if (api) { // Ensure api exists before disposing
+                api.dispose();
+            }
             window.location.href = 'index.html';
         });
 
     } catch (error) {
+        clearTimeout(loadingTimeout);
         console.error('Failed to initialize JitsiMeetExternalAPI:', error);
         if (loadingMessage) loadingMessage.style.display = 'none';
         if (errorMessage) errorMessage.style.display = 'flex';
+        const errorDetails = errorMessage?.querySelector('p');
+        if (errorDetails) {
+            errorDetails.textContent = `Failed to start video call: ${error.message}. Please ensure your internet connection is stable and try again.`;
+        }
     }
 });
+
